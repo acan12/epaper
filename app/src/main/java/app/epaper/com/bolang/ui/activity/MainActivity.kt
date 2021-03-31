@@ -1,86 +1,104 @@
 package app.epaper.com.bolang.ui.activity
 
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
-import android.content.pm.PackageManager
+import android.Manifest
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import app.beelabs.com.codebase.base.BaseActivity
 import app.beelabs.com.codebase.support.rx.RxTimer
-import app.epaper.com.bolang.ui.tools.UiUtil
-import app.epaper.com.bolang.databinding.ActivityMainBinding
-import com.github.barteksc.pdfviewer.listener.OnFileDownloadCompleteListener
+import app.epaper.com.bolang.R
+import app.epaper.com.bolang.ui.tool.CoreUtil
+import app.epaper.com.bolang.ui.tool.PdfDownloader
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 
 
-class MainActivity : BaseActivity(), OnPageChangeListener, OnLoadCompleteListener,
-    OnFileDownloadCompleteListener {
-    private lateinit var binding: ActivityMainBinding
-    private val PERMISSION_CODE: Int = 42042
+class MainActivity : BaseActivity(), PdfDownloader.StatusListener, OnPageChangeListener,
+    OnLoadCompleteListener {
+    private val MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1
+    private val sourceURL = "http://www.africau.edu/images/default/sample.pdf"
+    private lateinit var fileName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        val permissionCheck = ContextCompat.checkSelfPermission(
-            this,
-            READ_EXTERNAL_STORAGE
-        )
 
-        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                this, arrayOf(READ_EXTERNAL_STORAGE),
-                PERMISSION_CODE
-            )
-            return
-        }
-
-        RxTimer.doTimer(5000, false, object: RxTimer(){
+        RxTimer.doTimer(5000, false, object : RxTimer() {
             override fun onCallback(along: Long?) {
-                binding.progressBar.visibility = View.GONE
-                setupUI()
+
+                Dexter.withContext(this@MainActivity)
+                    .withPermissions(
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    ).withListener(object : MultiplePermissionsListener {
+                        override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                            report?.let {
+                                if (report.areAllPermissionsGranted()) {
+                                    PdfDownloader(sourceURL, 123, this@MainActivity)
+                                }
+                            }
+                        }
+
+                        override fun onPermissionRationaleShouldBeShown(
+                            permissions: MutableList<PermissionRequest>?,
+                            token: PermissionToken?
+                        ) {
+                            token?.continuePermissionRequest()
+                        }
+                    }).check()
             }
         })
-
     }
 
-    private fun setupUI() = with(binding) {
-//        pdfView.fromAsset("pdf/epaper_demo.pdf")
-//            .pages(0, 2, 1, 3, 3, 3) // all pages are displayed by default
-        pdfView.fromUrl("http://www.africau.edu/images/default/sample.pdf")
+    private fun renderPdfView(pdfPath: String) {
+        pdf_view.fromUri(File(pdfPath).toUri())
             .defaultPage(0)
             .enableSwipe(true) // allows to block changing pages using swipe
             .enableDoubletap(true)
             .onLoad(this@MainActivity) // called after document is loaded and starts to be rendered
             .onPageChange(this@MainActivity)
-            .swipeHorizontal(false)
-            .enableAntialiasing(false)
+            .swipeHorizontal(isLandscape())
+            .enableAntialiasing(true)
             .spacing(10)
-            .onFileDownload(this@MainActivity)
             .load()
-
-        RxTimer.doTimer(5000, false, object: RxTimer(){
-            override fun onCallback(along: Long?) {
-                pdfView.jumpTo(3, true)
-            }
-        })
-
     }
 
+    private fun isLandscape(): Boolean =
+        resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
+
     override fun onPageChanged(page: Int, pageCount: Int) {
-        Toast.makeText(this@MainActivity, "Page = $page", Toast.LENGTH_SHORT).show()
+        page_value.text = "${page + 1} / $pageCount"
+        btn_prev.setOnClickListener { pdf_view.jumpTo(0) }
+        btn_next.setOnClickListener { pdf_view.jumpTo(pageCount - 1) }
+        btn_save_offline.setOnClickListener { CoreUtil.savedOffline(fileName, this) }
     }
 
     override fun loadComplete(nbPages: Int) {
-
+        progress_bar.visibility = View.GONE
     }
 
-    override fun onDownloadComplete(file: File?) {
+    override fun getContext(): Context = this
 
+    override fun onDownloadStart() {
+        Toast.makeText(this, "Download ... !", Toast.LENGTH_SHORT).show()
     }
+
+    override fun onDownloadSuccess(absolutePath: String, fileName: String) {
+        this.fileName = fileName
+        renderPdfView(absolutePath)
+        Toast.makeText(this, "Downloaded in $absolutePath !", Toast.LENGTH_LONG).show()
+    }
+
 }

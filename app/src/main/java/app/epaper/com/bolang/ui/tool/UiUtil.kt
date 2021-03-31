@@ -1,4 +1,4 @@
-package app.epaper.com.bolang.ui.tools
+package app.epaper.com.bolang.ui.tool
 
 import android.app.Activity
 import android.view.View
