@@ -10,7 +10,6 @@ import androidx.core.net.toUri
 import app.beelabs.com.codebase.base.BaseActivity
 import app.beelabs.com.codebase.support.rx.RxTimer
 import app.epaper.com.bolang.R
-import app.epaper.com.bolang.ui.tool.CoreUtil
 import app.epaper.com.bolang.ui.tool.PdfDownloader
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
@@ -25,8 +24,7 @@ import java.io.File
 
 class MainActivity : BaseActivity(), PdfDownloader.StatusListener, OnPageChangeListener,
     OnLoadCompleteListener {
-    private val MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1
-    private val sourceURL = "http://www.africau.edu/images/default/sample.pdf"
+    private val sourceURL = "https://www.deusain.com/wp-content/uploads/2021/03/EPAPER_PB_514_24032021_OK-1.pdf"
     private lateinit var fileName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,7 +80,7 @@ class MainActivity : BaseActivity(), PdfDownloader.StatusListener, OnPageChangeL
         page_value.text = "${page + 1} / $pageCount"
         btn_prev.setOnClickListener { pdf_view.jumpTo(0) }
         btn_next.setOnClickListener { pdf_view.jumpTo(pageCount - 1) }
-        btn_save_offline.setOnClickListener { CoreUtil.savedOffline(fileName, this) }
+//        btn_save_offline.setOnClickListener { CoreUtil.savedOffline(fileName, this) }
     }
 
     override fun loadComplete(nbPages: Int) {
