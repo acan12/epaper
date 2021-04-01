@@ -1,6 +1,7 @@
 package app.epaper.com.bolang
 
 import android.content.Context
+import android.os.Environment
 import app.beelabs.com.codebase.base.BaseApp
 import app.beelabs.com.codebase.di.component.AppComponent
 import app.beelabs.com.codebase.di.component.DaggerAppComponent
@@ -11,6 +12,7 @@ import app.epaper.com.bolang.ui.component.manager.EventManager
 import app.epaper.com.bolang.ui.component.manager.NavigationManager
 import app.epaper.com.bolang.ui.component.manager.PaymentLogicManager
 import app.epaper.com.bolang.ui.component.module.NavModule
+import java.io.File
 
 class App : BaseApp() {
 
@@ -72,5 +74,4 @@ class App : BaseApp() {
             .newSupportSubcomponent()
 
     }
-
 }

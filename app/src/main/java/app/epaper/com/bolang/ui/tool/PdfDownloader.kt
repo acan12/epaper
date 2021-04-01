@@ -9,8 +9,12 @@ import java.io.BufferedInputStream
 import java.io.File
 import java.net.URL
 
-internal class PdfDownloader(url: String, docId: Int, private val listener: StatusListener) {
-    private val fileName = "epaper-$docId.pdf"
+class PdfDownloader(
+    url: String,
+    var fileName: String,
+    private val listener: StatusListener
+) {
+//    private val fileName = //"epaper-$docId.pdf"
 
     interface StatusListener {
         fun getContext(): Context

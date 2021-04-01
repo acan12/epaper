@@ -35,13 +35,13 @@
                         android:textColor="@color/color_black_transparent80"
                         android:textSize="14sp" />
 
-                <ImageView
+                <ImageButton
                         android:id="@+id/btn_save_offline"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="18dp"
+                        android:layout_height="26dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="15dp"
                         android:src="@drawable/ic_download_on" />
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>

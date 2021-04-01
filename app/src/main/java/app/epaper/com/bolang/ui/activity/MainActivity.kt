@@ -10,6 +10,7 @@ import androidx.core.net.toUri
 import app.beelabs.com.codebase.base.BaseActivity
 import app.beelabs.com.codebase.support.rx.RxTimer
 import app.epaper.com.bolang.R
+import app.epaper.com.bolang.ui.tool.CoreUtil
 import app.epaper.com.bolang.ui.tool.PdfDownloader
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
@@ -43,7 +44,7 @@ class MainActivity : BaseActivity(), PdfDownloader.StatusListener, OnPageChangeL
                         override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                             report?.let {
                                 if (report.areAllPermissionsGranted()) {
-                                    PdfDownloader(sourceURL, 123, this@MainActivity)
+                                    CoreUtil.buildPdfDownloader(getContext(), sourceURL, 123, this@MainActivity)
                                 }
                             }
                         }
@@ -80,7 +81,7 @@ class MainActivity : BaseActivity(), PdfDownloader.StatusListener, OnPageChangeL
         page_value.text = "${page + 1} / $pageCount"
         btn_prev.setOnClickListener { pdf_view.jumpTo(0) }
         btn_next.setOnClickListener { pdf_view.jumpTo(pageCount - 1) }
-//        btn_save_offline.setOnClickListener { CoreUtil.savedOffline(fileName, this) }
+        btn_save_offline.setOnClickListener { CoreUtil.savedOffline(fileName, this) }
     }
 
     override fun loadComplete(nbPages: Int) {
