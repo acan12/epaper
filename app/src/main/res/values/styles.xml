@@ -16,4 +16,29 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Font Style   -->
+    <style name="FontBold" parent="TextAppearance.AppCompat">
+        <item name="fontPath">font/CircularStd-Bold.otf</item>
+    </style>
+
+    <style name="FontBook" parent="TextAppearance.AppCompat">
+        <item name="fontPath">font/CircularStd-Book.otf</item>
+    </style>
+
+    <style name="FontInterBlack" parent="TextAppearance.AppCompat">
+        <item name="fontPath">font/Inter-Black.ttf</item>
+    </style>
+    <style name="FontInterBold" parent="TextAppearance.AppCompat">
+        <item name="fontPath">font/Inter-Bold.ttf</item>
+    </style>
+    <style name="FontInterMedium" parent="TextAppearance.AppCompat">
+        <item name="fontPath">font/Inter-Medium.ttf</item>
+    </style>
+    <style name="FontInterRegular" parent="TextAppearance.AppCompat">
+        <item name="fontPath">font/Inter-Regular.ttf</item>
+    </style>
+    <style name="FontInterSemiBold" parent="TextAppearance.AppCompat">
+        <item name="fontPath">font/Inter-SemiBold.ttf</item>
+    </style>
+
 </resources>

@@ -1,6 +1,7 @@
 package app.epaper.com.bolang.ui.component
 
 import app.beelabs.com.codebase.di.component.AppComponent
+import app.epaper.com.bolang.ui.component.impl.IAuthNavigation
 import app.epaper.com.bolang.ui.component.impl.IHomeNavigation
 import app.epaper.com.bolang.ui.component.impl.INavigation
 import app.epaper.com.bolang.ui.component.module.NavModule
@@ -12,6 +13,7 @@ import dagger.Component
 interface UIComponent {
     fun inject(iNavigation: INavigation): INavigation
     fun inject(iHomeNavigation: IHomeNavigation): IHomeNavigation
+    fun inject(iAuthNavigation: IAuthNavigation): IAuthNavigation
 
     fun newSupportSubcomponent() : SupportSubComponent
 }
