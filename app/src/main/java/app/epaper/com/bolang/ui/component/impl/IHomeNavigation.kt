@@ -4,5 +4,5 @@ import android.content.Context
 
 interface IHomeNavigation : IBaseNavigation {
 
-    fun goSecondPage(txt: String, context: Context)
+    fun navigateToPreview(context: Context)
 }

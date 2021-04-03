@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.beelabs.com.codebase.base.BaseFragment
+import app.epaper.com.bolang.App
 import app.epaper.com.bolang.databinding.FragmentLoginBinding
 
 class LoginFragment : BaseFragment() {
@@ -25,6 +26,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun setupUI() = with(binding){
-
+        btnNext.setOnClickListener { App.getNavigationComponent().homeNavigation()
+            .navigateToPreview(requireContext()) }
     }
 }

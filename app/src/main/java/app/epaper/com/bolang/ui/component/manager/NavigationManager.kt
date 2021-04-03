@@ -11,7 +11,7 @@ class NavigationManager : INavigation {
         return App.uiComponent?.inject(AuthNavigation())!!
     }
 
-    override fun homeNavigation(intent: Intent): IHomeNavigation {
+    override fun homeNavigation(): IHomeNavigation {
         return App.uiComponent?.inject(HomeNavigation())!!
     }
 }
