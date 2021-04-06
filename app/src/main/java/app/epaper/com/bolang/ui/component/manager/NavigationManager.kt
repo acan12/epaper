@@ -1,6 +1,5 @@
 package app.epaper.com.bolang.ui.component.manager
 
-import android.content.Intent
 import app.epaper.com.bolang.App
 import app.epaper.com.bolang.ui.component.impl.IAuthNavigation
 import app.epaper.com.bolang.ui.component.impl.IHomeNavigation

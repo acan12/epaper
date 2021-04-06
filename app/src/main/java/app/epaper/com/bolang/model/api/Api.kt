@@ -1,9 +1,10 @@
-package app.clappingape.com.elevaniamartpos.model.api
+package app.epaper.com.bolang.model.api
 
 import app.epaper.com.bolang.App
 import app.epaper.com.bolang.IConfig
 import app.epaper.com.bolang.presenter.manager.SessionManager
 import app.beelabs.com.codebase.base.BaseApi
+import app.clappingape.com.elevaniamartpos.model.api.ApiService
 
 
 class Api : BaseApi() {

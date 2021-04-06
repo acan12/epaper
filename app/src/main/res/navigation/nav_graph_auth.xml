@@ -6,5 +6,28 @@
     <fragment
             android:id="@+id/loginFragment"
             android:name="app.epaper.com.bolang.ui.fragment.LoginFragment"
-            android:label="LoginFragment" />
+            android:label="LoginFragment" >
+        <action
+                android:id="@+id/action_loginFragment_to_homeFragment"
+                app:destination="@id/homeFragment" />
+        <action
+                android:id="@+id/action_loginFragment_to_signupFragment"
+                app:destination="@id/signupFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/homeFragment"
+            android:name="app.epaper.com.bolang.ui.fragment.HomeFragment"
+            android:label="HomeFragment" />
+    <fragment
+            android:id="@+id/signupFragment"
+            android:name="app.epaper.com.bolang.ui.fragment.SignupFragment"
+            android:label="SignupFragment" >
+        <action
+                android:id="@+id/action_signupFragment_to_subscribeFragment"
+                app:destination="@id/subscribeFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/subscribeFragment"
+            android:name="app.epaper.com.bolang.ui.fragment.SubscribeFragment"
+            android:label="SubscribeFragment" />
 </navigation>
