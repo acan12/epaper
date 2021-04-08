@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Epaper</string>
 
-    <string name="pdf_filename_ext">epaper-[docId].pdf</string>
+    <string name="pdf_filename_format">epaper-[idPDF].pdf</string>
     <string name="agreement_login">
         <font color="#21A453">&#x2713;</font>
         <font> I agree to the </font>

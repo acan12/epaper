@@ -1,18 +1,18 @@
 package app.epaper.com.bolang.ui.component.manager
 
 import android.content.Context
-import android.content.Intent
 import android.view.View
-import androidx.navigation.NavController
+import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
-import app.epaper.com.bolang.App
+import app.epaper.com.bolang.IConfig
 import app.epaper.com.bolang.R
-import app.epaper.com.bolang.ui.activity.MainActivity
 import app.epaper.com.bolang.ui.component.impl.IHomeNavigation
 
 class HomeNavigation : IHomeNavigation {
-    override fun navigateToPreview(context: Context) {
-        context.startActivity(Intent(context, MainActivity::class.java))
+    override fun navigateToPreview(id: Int, name: String, link: String, view: View) {
+        var bundle = bundleOf(IConfig.ARG_ID_PDF to id, IConfig.ARG_NAME_PDF to name, IConfig.ARG_URL_PDF_LINK to link)
+        Navigation.findNavController(view)
+            .navigate(R.id.action_homeFragment_to_pdfPreviewFragment, bundle)
     }
 
     override fun navigateToHome(view: View, context: Context) {
@@ -25,5 +25,9 @@ class HomeNavigation : IHomeNavigation {
 
     override fun navigateToSubscribe(view: View, context: Context) {
         Navigation.findNavController(view).navigate(R.id.action_signupFragment_to_subscribeFragment)
+    }
+
+    override fun navigatePreviewToHome(view: View, context: Context) {
+        Navigation.findNavController(view).navigate(R.id.action_pdfPreviewFragment_to_homeFragment2)
     }
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import app.epaper.com.bolang.App
 import app.epaper.com.bolang.databinding.ItemEpaperBinding
 
 import app.epaper.com.bolang.model.entity.Epaper
@@ -29,21 +30,25 @@ class EpaperCardAdapter(private val epapers: List<Epaper>?, val activity: Activi
         var epaper =
             when (position) {
                 0 -> Epaper(
+                    1,
                     "Pelita Baru\n11 Juni 2020",
                     "https://lelogama.go-jek.com/post_thumbnail/promo-gomart-blog-header-voucher.jpg",
                     "https://www.deusain.com/wp-content/uploads/2021/03/EPAPER_PB_514_24032021_OK-1.pdf"
                 )
                 1 -> Epaper(
+                    2,
                     "Pelita Baru\n20 Des 2020",
                     "https://epaper.solopos.com/assets/uploads/2021/04/01/0001.jpg",
                     "https://www.deusain.com/wp-content/uploads/2021/03/EPAPER_PB_515_25032021_OK-1.pdf"
                 )
                 2 -> Epaper(
+                    3,
                     "Pelita Baru\n18 Jan 2021",
                     "https://fin.co.id/wp-content/uploads/2020/04/EPaper-Koran-Fajar-Indonesia-Network-Edisi-14-April-2020-scaled.jpg",
                     "https://www.deusain.com/wp-content/uploads/2021/03/EPAPER_PB_512_22032021_OK-1.pdf"
                 )
                 3 -> Epaper(
+                    4,
                     "Pelita Baru\n30 Mar 2021",
                     "https://fin.co.id/wp-content/uploads/2020/04/EPaper-Koran-Fajar-Indonesia-Network-Edisi-15-April-2020-scaled.jpg",
                     "https://www.deusain.com/wp-content/uploads/2021/03/EPAPER_PB_26MARET2021_OK-1.pdf"
@@ -63,7 +68,11 @@ class EpaperCardAdapter(private val epapers: List<Epaper>?, val activity: Activi
                     .load(epaper.urlImage)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(itemImage)
-                itemBinding.root.setOnClickListener { Toast.makeText(activity, "URL: ${epaper.urlEpaper}", Toast.LENGTH_SHORT).show() }
+                itemBinding.root.setOnClickListener {
+                    App.getNavigationComponent()
+                        .homeNavigation()
+                        .navigateToPreview(epaper.id, epaper.name, epaper.urlEpaper, itemBinding.root)
+                }
             }
 
         }

@@ -14,7 +14,6 @@ class PdfDownloader(
     var fileName: String,
     private val listener: StatusListener
 ) {
-//    private val fileName = //"epaper-$docId.pdf"
 
     interface StatusListener {
         fun getContext(): Context
