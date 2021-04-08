@@ -107,7 +107,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="Prev"
+                android:text="First"
                 android:textColor="@color/color_white"
                 android:textSize="18sp" />
 
@@ -127,7 +127,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:text="Next"
+                android:text="Last"
                 android:textColor="@color/color_white"
                 android:textSize="18sp" />
 

@@ -127,7 +127,7 @@ class PdfPreviewFragment : BaseFragment(), PdfDownloader.StatusListener, OnPageC
     override fun getContext(): Context = activity as Context
 
     override fun onDownloadStart() {
-        binding.progressBarLabel.text = "Download ... "
+        binding.progressBarLabel.text = "Downloading ... "
     }
 
     override fun onDownloadSuccess(absolutePath: String, fileName: String) {
