@@ -14,7 +14,7 @@ import app.epaper.com.bolang.model.entity.Epaper
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
-class EpaperCardAdapter(private val epapers: List<Epaper>?, val activity: Activity) :
+class EpaperCardAdapter(private val epapers: List<Epaper>?, private val activity: Activity) :
     RecyclerView.Adapter<EpaperCardAdapter.EpaperCardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpaperCardViewHolder {

@@ -5,13 +5,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <androidx.cardview.widget.CardView
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints">
+
+        <ImageView
+                android:id="@+id/main_content_image"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp"
+                android:padding="10dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/demo_banner" />
+
+    </androidx.cardview.widget.CardView>
+
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_grid_view"
+            android:id="@+id/rv_edition_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            tools:ignore="MissingConstraints,UnknownId" />
+            app:layout_constraintTop_toBottomOf="@id/main_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,73 +3,84 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp">
+        android:background="@color/color_white"
+        android:paddingHorizontal="16dp">
 
     <TextView
             android:id="@+id/header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="120dp"
-            android:text="Login"
+            android:text="@string/enter_login_form"
             android:textAppearance="@style/FontInterBold"
+            android:textColor="@color/color_black_010F07"
             android:textSize="40dp"
-            android:textColor="@color/color_blue_073f65"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+            android:id="@+id/header_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_welcome_description"
+            android:textAppearance="@style/FontInterSemiBold"
 
-    <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_email_layout"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            app:layout_constraintTop_toBottomOf="@+id/header">
-
-        <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/input_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:maxLength="15" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="34dp"
+            android:background="@drawable/bg_input_field"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:maxLength="35"
+            android:paddingHorizontal="10dp"
+            app:layout_constraintTop_toBottomOf="@id/header_description" />
 
     <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_password_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:counterEnabled="true"
-            app:errorEnabled="true"
-            app:layout_constraintTop_toBottomOf="@+id/input_email_layout"
+            app:hintEnabled="false"
+            android:layout_marginTop="14dp"
+            app:layout_constraintTop_toBottomOf="@id/input_email"
             app:passwordToggleEnabled="true">
 
         <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_input_field"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:maxLength="15" />
+                android:maxLength="15"
+                android:paddingHorizontal="10dp" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/agreement_login"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
             android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@id/btn_next" />
+            android:text="@string/agreement_login"
+            app:layout_constraintBottom_toTopOf="@id/btn_next"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
     <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/rounded_red_solid"
             android:text="Continue"
-            android:textSize="16sp"
-            android:textAppearance="@style/FontBook"
             android:textAllCaps="false"
+            android:textAppearance="@style/FontBook"
             android:textColor="@color/color_white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="24dp"/>
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

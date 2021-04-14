@@ -7,4 +7,13 @@
         <font> I agree to the </font>
         <font><b> Terms &amp; Conditions </b></font>
     </string>
+    <string name="enter_login_form">Welcome to</string>
+    <string name="login_welcome_description">
+        Enter your Email for sign in, Or\n
+        <font color="#60bddf"><b>Create new account</b></font>
+    </string>
+    <string name="subscribe_text">Subscribe</string>
+    <string name="join_text">Join</string>
+    <string name="signup_welcome_description">Super easy get news right now.</string>
+    <string name="subscribe_welcome_description">Choose your subscribe option below.</string>
 </resources>

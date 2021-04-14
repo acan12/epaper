@@ -28,6 +28,8 @@ class SignupFragment : BaseFragment() {
     }
 
     private fun setupUI() = with(binding){
-        
+        btnNext.setOnClickListener {
+            App.getNavigationComponent().authNavigation().navigateToSubscribe(root)
+        }
     }
 }
