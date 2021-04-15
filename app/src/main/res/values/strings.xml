@@ -16,4 +16,9 @@
     <string name="join_text">Join</string>
     <string name="signup_welcome_description">Super easy get news right now.</string>
     <string name="subscribe_welcome_description">Choose your subscribe option below.</string>
+    <string name="no_connection_text">Koneksi Terganggu</string>
+    <string name="no_connection_message">Cek koneksi internet, lalu coba lagi</string>
+    <string name="try_again">Coba lagi</string>
+    <string name="join_offer_text">Ayo bergabung</string>
+    <string name="join_offer_description">Jika ingin mendapatkan berita terupdate dari kami</string>
 </resources>

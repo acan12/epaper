@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import app.beelabs.com.codebase.base.BaseFragment
-import app.epaper.com.bolang.App
-import app.epaper.com.bolang.databinding.FragmentHomeBinding
-import app.epaper.com.bolang.databinding.FragmentLoginBinding
+import app.epaper.com.bolang.R
 import app.epaper.com.bolang.databinding.FragmentSubscribeBinding
+import app.epaper.com.bolang.ui.adapter.PaketCardAdapter
+import app.epaper.com.bolang.ui.dialog.SubscribeOfferDialog
 
 class SubscribeFragment : BaseFragment() {
     private lateinit var binding: FragmentSubscribeBinding
@@ -27,7 +28,12 @@ class SubscribeFragment : BaseFragment() {
         setupUI()
     }
 
-    private fun setupUI() = with(binding){
-        
+    private fun setupUI() = with(binding) {
+        rvGridPackage.layoutManager = GridLayoutManager(requireContext(), 2)
+        rvGridPackage.adapter =
+            PaketCardAdapter(null, binding.root, this@SubscribeFragment.resources)
+        btnNext.setOnClickListener {
+            SubscribeOfferDialog(requireContext(), R.style.CoconutDialogFullScreen).show()
+        }
     }
 }
