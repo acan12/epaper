@@ -71,7 +71,7 @@ class EpaperCardAdapter(private val epapers: List<Epaper>?, private val activity
                 itemBinding.root.setOnClickListener {
                     App.getNavigationComponent()
                         .homeNavigation()
-                        .navigateToPreview(epaper.id, epaper.name, epaper.urlEpaper, itemBinding.root)
+                        .navigateToPreview(epaper, itemBinding.root)
                 }
             }
 

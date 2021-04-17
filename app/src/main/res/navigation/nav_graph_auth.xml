@@ -23,17 +23,16 @@
                 app:destination="@id/pdfPreviewFragment"
                 app:popUpTo="@id/homeFragment"
                 app:popUpToInclusive="true"/>
+        <action
+                android:id="@+id/action_homeFragment_to_subscribeFragment"
+                app:destination="@id/subscribeFragment" />
 
 
     </fragment>
     <fragment
             android:id="@+id/signupFragment"
             android:name="app.epaper.com.bolang.ui.fragment.SignupFragment"
-            android:label="SignupFragment" >
-        <action
-                android:id="@+id/action_signupFragment_to_subscribeFragment"
-                app:destination="@id/subscribeFragment" />
-    </fragment>
+            android:label="SignupFragment" />
     <fragment
             android:id="@+id/subscribeFragment"
             android:name="app.epaper.com.bolang.ui.fragment.SubscribeFragment"

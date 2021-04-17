@@ -20,8 +20,4 @@ class AuthNavigation : IAuthNavigation {
     override fun navigateToSignupForm(view: View) {
         Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signupFragment)
     }
-
-    override fun navigateToSubscribe(view: View) {
-        Navigation.findNavController(view).navigate(R.id.action_signupFragment_to_subscribeFragment)
-    }
 }

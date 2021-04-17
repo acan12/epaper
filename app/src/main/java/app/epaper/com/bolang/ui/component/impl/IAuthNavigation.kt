@@ -8,6 +8,4 @@ interface IAuthNavigation : IBaseNavigation {
     fun navigateToLogin(context: Context)
 
     fun navigateToSignupForm(view: View)
-
-    fun navigateToSubscribe(view: View)
 }
