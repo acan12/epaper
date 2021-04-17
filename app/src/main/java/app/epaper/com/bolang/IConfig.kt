@@ -7,6 +7,7 @@ interface IConfig {
         const val API_BASE_URL = "http://"
         const val SESSION_TOKEN_CREDENTIAL = ""
         const val SESSION_LOGIN_KEY = "session_login"
+        const val SESSION_SUBS_KEY = "session_subscriber"
         const val ARG_URL_PDF_LINK = "urlPdfLink"
         var ARG_ID_PDF = "idPdf"
         var ARG_NAME_PDF = "namePfg"

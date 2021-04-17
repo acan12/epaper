@@ -9,7 +9,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_white_top"
-            android:padding="32dp"
+            android:paddingBottom="50dp"
+            android:paddingHorizontal="32dp"
             app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
@@ -43,7 +44,7 @@
                 android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_retry"
+                android:id="@+id/btn_subscribe"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_below="@id/description"

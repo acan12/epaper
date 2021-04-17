@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import app.epaper.com.bolang.R
 import app.epaper.com.bolang.databinding.ItemPaketCardBinding
 
 import app.epaper.com.bolang.model.entity.PaketSubscribeCard
@@ -36,7 +37,11 @@ class PaketCardAdapter(
                     12,
                     object : ItemClickListener() {
                         override fun execute(view: View) {
-                            Toast.makeText(view.context, (position+1).toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                view.context,
+                                (position + 1).toString(),
+                                Toast.LENGTH_SHORT
+                            ).show()
 //                            App.getNavigationComponent().homeNavigation().navigateToBmcLogin(view)
                         }
                     }
@@ -47,7 +52,11 @@ class PaketCardAdapter(
                     6,
                     object : ItemClickListener() {
                         override fun execute(view: View) {
-                            Toast.makeText(view.context, (position+1).toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                view.context,
+                                (position + 1).toString(),
+                                Toast.LENGTH_SHORT
+                            ).show()
 //                            App.getNavigationComponent().homeNavigation().navigateToBmcLogin(view)
                         }
                     }
@@ -60,11 +69,22 @@ class PaketCardAdapter(
 
     class MenuCardViewHolder(val itemBinding: ItemPaketCardBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
+        private var prevSelected: View? = null
+
         fun bind(paket: PaketSubscribeCard) {
             itemBinding.apply {
                 itemName.text = paket.name
                 itemPrice.text = paket.price
-                root.setOnClickListener { paket.clickListener?.execute(it) }
+                root.setOnClickListener {
+                    var x = itemPaket.tag
+                    if (itemPaket.tag == null || itemPaket.tag == false) {
+                        itemPaket.tag = true
+                        itemPaket.setBackgroundResource(R.drawable.bg_btn_solid_orange_with_border)
+                    }
+                    if(itemPaket.tag != null) prevSelected?.setBackgroundResource(R.drawable.bg_btn_border_blue)
+                    prevSelected = itemPaket
+                }
+
 //                tvMenuItem.text = menuCard.text
 //                tvMenuItem.setCompoundDrawablesWithIntrinsicBounds(0, menuCard.imgIcon, 0, 0)
 //                tvMenuItem.setOnClickListener {

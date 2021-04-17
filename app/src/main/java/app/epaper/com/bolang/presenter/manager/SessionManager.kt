@@ -10,6 +10,10 @@ object SessionManager {
         CacheUtil.putPreferenceBoolean(IConfig.SESSION_LOGIN_KEY, isLogin, context)
     }
 
+    fun putSessionSubscribe(isSubscribe: Boolean, context: Context) {
+        CacheUtil.putPreferenceBoolean(IConfig.SESSION_SUBS_KEY, isSubscribe, context)
+    }
+
     fun clearSessionLogin(context: Context) {
         CacheUtil.putPreferenceBoolean(IConfig.SESSION_LOGIN_KEY, false, context)
         CacheUtil.putPreferenceString(IConfig.SESSION_TOKEN_CREDENTIAL, "", context)
@@ -17,6 +21,10 @@ object SessionManager {
 
     fun isLogin(context: Context): Boolean {
         return CacheUtil.getPreferenceBoolean(IConfig.SESSION_LOGIN_KEY, context)!!
+    }
+
+    fun isSubscribe(context: Context): Boolean {
+        return CacheUtil.getPreferenceBoolean(IConfig.SESSION_SUBS_KEY, context)!!
     }
 
     fun putCredential(token: String, context: Context) {

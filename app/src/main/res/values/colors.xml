@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#4eb67d</color>
-    <color name="colorPrimaryDark">@color/color_blue_073f65</color>
+    <color name="colorPrimaryDark">#2f9aaf</color>
     <color name="colorAccent">@color/color_blue_073f65</color>
-    <color name="color_black_transparent50">#7F000000</color>
+    <color name="color_black_transparent50">#7F6897bb</color>
     <color name="colorCoconut_background_dialog">@color/color_black_transparent50</color>
 
     <color name="color_background">#424242</color>
@@ -14,4 +14,6 @@
     <color name="color_green_22A45D">#22A45D</color>
     <color name="color_grey_e6e6e6">#e6e6e6</color>
     <color name="color_orange_fa8742">#fa8742</color>
+    <color name="color_orange_ffc04c">#ffc04c</color>
+    <color name="color_orange_ffdb99">#ffdb99</color>
 </resources>

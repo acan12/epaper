@@ -33,7 +33,7 @@ class SubscribeFragment : BaseFragment() {
         rvGridPackage.adapter =
             PaketCardAdapter(null, binding.root, this@SubscribeFragment.resources)
         btnNext.setOnClickListener {
-            SubscribeOfferDialog(requireContext(), R.style.CoconutDialogFullScreen).show()
+            SubscribeOfferDialog(root, R.style.CoconutDialogFullScreen).show()
         }
     }
 }

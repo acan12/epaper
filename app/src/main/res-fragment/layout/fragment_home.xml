@@ -41,7 +41,7 @@
                     android:rotation="-90"
                     android:text="Edisi Utama"
                     android:textAlignment="center"
-                    android:textColor="@color/color_white" />
+                    android:textColor="#3e5a70" />
 
         </RelativeLayout>
 

@@ -1,12 +1,13 @@
 package app.epaper.com.bolang.ui.dialog
 
-import android.content.Context
 import android.os.Bundle
+import android.view.View
 import app.beelabs.com.codebase.base.BaseDialog
+import app.epaper.com.bolang.App
 import app.epaper.com.bolang.R
-import kotlinx.android.synthetic.main.dialog_no_internet.*
+import kotlinx.android.synthetic.main.dialog_subscribe_offer.*
 
-class SubscribeOfferDialog(context: Context, style: Int) : BaseDialog(context, style) {
+class SubscribeOfferDialog(var view: View, style: Int) : BaseDialog(view.context, style) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,9 +18,12 @@ class SubscribeOfferDialog(context: Context, style: Int) : BaseDialog(context, s
     }
 
     private fun initUI() {
-        btn_retry.setOnClickListener {
+        btn_subscribe.setOnClickListener {
             dismiss()
-            // recall api give stamp
+
+            App.getNavigationComponent()
+                .homeNavigation()
+                .navigateToSubscribe(view, view.context)
         }
 
     }
