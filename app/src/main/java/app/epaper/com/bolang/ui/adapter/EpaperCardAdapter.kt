@@ -4,12 +4,9 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import app.epaper.com.bolang.App
-import app.epaper.com.bolang.R
 import app.epaper.com.bolang.databinding.ItemEpaperBinding
 import app.epaper.com.bolang.model.entity.Epaper
-import app.epaper.com.bolang.presenter.manager.SessionManager
-import app.epaper.com.bolang.ui.dialog.SubscribeOfferDialog
+import app.epaper.com.bolang.ui.tool.UiUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
@@ -68,17 +65,7 @@ class EpaperCardAdapter(private val epapers: List<Epaper>?, private val activity
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(itemImage)
                 itemBinding.root.setOnClickListener {
-                    if (SessionManager.isLogin(root.context)) {
-                        App.getNavigationComponent()
-                            .authNavigation()
-                            .navigateToLogin(root.context)
-                    } else if (SessionManager.isSubscribe(root.context)) {
-                        SubscribeOfferDialog(root, R.style.CoconutDialogFullScreen).show()
-                    } else {
-                        App.getNavigationComponent()
-                            .homeNavigation()
-                            .navigateToPreview(epaper, itemBinding.root)
-                    }
+                    UiUtil.showDetailEpaper(epaper, root)
                 }
             }
 

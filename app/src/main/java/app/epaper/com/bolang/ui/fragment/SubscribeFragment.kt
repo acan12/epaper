@@ -10,6 +10,7 @@ import app.epaper.com.bolang.R
 import app.epaper.com.bolang.databinding.FragmentSubscribeBinding
 import app.epaper.com.bolang.ui.adapter.PaketCardAdapter
 import app.epaper.com.bolang.ui.dialog.SubscribeOfferDialog
+import app.epaper.com.bolang.ui.dialog.SubscribeProcessingDialog
 
 class SubscribeFragment : BaseFragment() {
     private lateinit var binding: FragmentSubscribeBinding
@@ -29,11 +30,12 @@ class SubscribeFragment : BaseFragment() {
     }
 
     private fun setupUI() = with(binding) {
+
         rvGridPackage.layoutManager = GridLayoutManager(requireContext(), 2)
         rvGridPackage.adapter =
             PaketCardAdapter(null, binding.root, this@SubscribeFragment.resources)
         btnNext.setOnClickListener {
-            SubscribeOfferDialog(root, R.style.CoconutDialogFullScreen).show()
+            SubscribeProcessingDialog(root, R.style.CoconutDialogFullScreen).show()
         }
     }
 }

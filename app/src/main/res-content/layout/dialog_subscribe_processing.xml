@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_white_top"
+            android:paddingBottom="50dp"
+            android:paddingHorizontal="32dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+                android:id="@+id/logo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_checked_green" />
+
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="23dp"
+                android:text="@string/thank_you"
+                android:textAppearance="@style/FontBold"
+                android:textColor="@color/color_blue_073f65"
+                android:textSize="20sp" />
+
+        <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:text="@string/thank_you_description"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_subscribe"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_below="@id/description"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/bg_btn_blue"
+                android:text="@string/please_waiting"
+                android:textAllCaps="false"
+                android:textColor="@color/color_white" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

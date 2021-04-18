@@ -16,4 +16,5 @@ interface IHomeNavigation : IBaseNavigation {
 
     fun navigateToPreview(item: Epaper, view: View)
 
+    fun navigateFromSubscribeToHome(view: View, context: Context)
 }

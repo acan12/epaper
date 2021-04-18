@@ -34,4 +34,7 @@ class HomeNavigation : IHomeNavigation {
         Navigation.findNavController(view).navigate(R.id.action_pdfPreviewFragment_to_homeFragment2)
     }
 
+    override fun navigateFromSubscribeToHome(view: View, context: Context) {
+        Navigation.findNavController(view).navigate(R.id.action_subscribeFragment_to_homeFragment)
+    }
 }

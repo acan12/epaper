@@ -6,17 +6,49 @@
         android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:cardElevation="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Home"
+                    android:textColor="@color/color_blue_073f65"
+                    android:textSize="16sp" />
+
+            <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/ic_checked_grey" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
             android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
             tools:ignore="MissingConstraints">
 
         <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="500dp">
+                android:layout_height="450dp">
 
             <ImageView
                     android:id="@+id/main_content_image"
@@ -30,7 +62,7 @@
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
-                    android:background="@color/color_black_transparent50" />
+                    android:background="@color/color_blue_transparent50" />
 
             <TextView
                     android:layout_width="wrap_content"

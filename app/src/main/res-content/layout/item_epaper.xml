@@ -23,6 +23,8 @@
                 android:src="@drawable/demo_banner"
                 android:adjustViewBounds="true"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 tools:ignore="MissingConstraints" />
 
         <View

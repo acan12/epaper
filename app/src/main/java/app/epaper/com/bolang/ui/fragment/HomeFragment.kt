@@ -10,7 +10,9 @@ import app.beelabs.com.codebase.base.BaseFragment
 import app.epaper.com.bolang.App
 import app.epaper.com.bolang.databinding.FragmentHomeBinding
 import app.epaper.com.bolang.databinding.FragmentLoginBinding
+import app.epaper.com.bolang.model.entity.Epaper
 import app.epaper.com.bolang.ui.adapter.EpaperCardAdapter
+import app.epaper.com.bolang.ui.tool.UiUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
@@ -36,6 +38,7 @@ class HomeFragment : BaseFragment() {
             .load("https://epaper.solopos.com/assets/uploads/2021/04/01/0001.jpg")
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(mainContentImage)
+        mainContentImage.setOnClickListener { UiUtil.showDetailEpaper(null, root) }
 
         var layout = LinearLayoutManager(activity)
         layout.orientation = LinearLayoutManager.HORIZONTAL
