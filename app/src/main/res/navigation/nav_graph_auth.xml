@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph_auth"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/nav_graph_auth"
         app:startDestination="@id/loginFragment">
 
     <fragment
             android:id="@+id/loginFragment"
             android:name="app.epaper.com.bolang.ui.fragment.LoginFragment"
-            android:label="LoginFragment" >
+            android:label="LoginFragment">
         <action
                 android:id="@+id/action_loginFragment_to_homeFragment"
                 app:destination="@id/homeFragment" />
@@ -17,12 +18,12 @@
     <fragment
             android:id="@+id/homeFragment"
             android:name="app.epaper.com.bolang.ui.fragment.HomeFragment"
-            android:label="HomeFragment" >
+            android:label="HomeFragment">
         <action
                 android:id="@+id/action_homeFragment_to_pdfPreviewFragment"
                 app:destination="@id/pdfPreviewFragment"
                 app:popUpTo="@id/homeFragment"
-                app:popUpToInclusive="true"/>
+                app:popUpToInclusive="true" />
         <action
                 android:id="@+id/action_homeFragment_to_subscribeFragment"
                 app:destination="@id/subscribeFragment" />
@@ -32,29 +33,46 @@
     <fragment
             android:id="@+id/signupFragment"
             android:name="app.epaper.com.bolang.ui.fragment.SignupFragment"
-            android:label="SignupFragment" />
+            android:label="SignupFragment">
+        <action
+                android:id="@+id/action_signupFragment_to_passwordFragment"
+                app:destination="@id/passwordFragment" />
+    </fragment>
     <fragment
             android:id="@+id/subscribeFragment"
             android:name="app.epaper.com.bolang.ui.fragment.SubscribeFragment"
-            android:label="SubscribeFragment" >
+            android:label="SubscribeFragment">
         <action
                 android:id="@+id/action_subscribeFragment_to_homeFragment"
                 app:destination="@id/homeFragment"
                 app:popUpTo="@id/subscribeFragment"
-                app:popUpToInclusive="true"/>
+                app:popUpToInclusive="true" />
     </fragment>
     <fragment
             android:id="@+id/pdfPreviewFragment"
             android:name="app.epaper.com.bolang.ui.fragment.PdfPreviewFragment"
-            android:label="PdfPreviewFragment" >
+            android:label="PdfPreviewFragment">
 
-        <argument android:name="urlPdfLink" app:argType="string" />
-        <argument android:name="idPdfLink" app:argType="integer" android:defaultValue="0" />
+        <argument
+                android:name="urlPdfLink"
+                app:argType="string" />
+        <argument
+                android:name="idPdfLink"
+                android:defaultValue="0"
+                app:argType="integer" />
         <action
                 android:id="@+id/action_pdfPreviewFragment_to_homeFragment2"
-                app:destination="@id/homeFragment"
+                app:destination="@id/homeFragment" />
 
-                />
-
+    </fragment>
+    <fragment
+            android:id="@+id/passwordFragment"
+            android:name="app.epaper.com.bolang.ui.fragment.PasswordFragment"
+            android:label="PasswordFragment">
+        <action
+                android:id="@+id/action_passwordFragment_to_loginFragment"
+                app:destination="@id/loginFragment"
+                app:popUpTo="@id/passwordFragment"
+                app:popUpToInclusive="true" />
     </fragment>
 </navigation>

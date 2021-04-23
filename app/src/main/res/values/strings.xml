@@ -22,6 +22,7 @@
     <string name="join_offer_text">Ayo bergabung</string>
     <string name="join_offer_description">Jika ingin mendapatkan berita terupdate dari kami</string>
     <string name="signup_text">Daftar</string>
+    <string name="continue_text">Lanjutkan</string>
     <string name="action_transfer_via_virtual_account">
         Silahkan transfer ke \n
         <font><b>Rekening Virtual : 126575767887681 a/n Pt. Pelita Baru</b></font>
@@ -35,4 +36,6 @@
     <string name="thank_you">Terima Kasih</string>
     <string name="thank_you_description">Harap segera melakukan pembayaran dalam kurun waktu 24 jam, tim kami akan memverifikasi akun anda.</string>
     <string name="please_waiting">Harap tunggu sedang diproses</string>
+    <string name="password_text">Put Your Password</string>
+    <string name="password_description_text">Safety your account</string>
 </resources>
