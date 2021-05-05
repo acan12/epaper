@@ -16,9 +16,13 @@ android {
         multiDexEnabled true
     }
     buildTypes {
+        debug {
+            buildConfigField "boolean", "IS_DEBUG", "true"
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "IS_DEBUG", "false"
         }
     }
 
@@ -98,6 +102,10 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     // Permission Access
     implementation 'com.karumi:dexter:6.2.2'
+
+    // debug tools
+    debugImplementation "com.github.chuckerteam.chucker:library:3.4.0"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.4.0"
 
     // Unit Test
     testImplementation 'junit:junit:4.12'

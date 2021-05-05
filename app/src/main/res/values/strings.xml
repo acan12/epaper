@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Epaper</string>
+    <string name="app_name">Pelita Baru</string>
 
     <string name="pdf_filename_format">epaper-[idPDF].pdf</string>
     <string name="agreement_login">

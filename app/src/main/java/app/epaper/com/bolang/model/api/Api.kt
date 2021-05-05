@@ -1,31 +1,37 @@
 package app.epaper.com.bolang.model.api
 
+import android.content.Context
 import app.epaper.com.bolang.App
 import app.epaper.com.bolang.IConfig
 import app.epaper.com.bolang.presenter.manager.SessionManager
 import app.beelabs.com.codebase.base.BaseApi
-import app.clappingape.com.elevaniamartpos.model.api.ApiService
+import app.epaper.com.bolang.BuildConfig
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 
 
 class Api : BaseApi() {
 
     companion object {
-        private fun initHeader(): Map<String, String> {
+        private fun initHeaderWithToken(context: Context): Map<String, String> {
+            val bearerValue = SessionManager.getCredential(context)
+            //   CacheUtil.getPreferenceString(IConfig.SESSION_TOKEN_CREDENTIAL, context)
             val map = HashMap<String, String>()
-            map["Authorization"] = SessionManager.getCredential(
-                App.applicationContext()!!)
-//            map["Cache-Control"] = ""
-//            map["Content-type"] = ""
+            map["Content-Type"] = "application/json"
+            map["Authorization"] = "Bearer $bearerValue"
             return map
         }
 
         @Synchronized
-        private fun initApiDomain(): ApiService {
-            BaseApi.getInstance().apiDomain = IConfig.API_BASE_URL
-            return getInstance().setupApi(
+        private fun initApiDomain(context: Context): ApiService {
+            return getInstance().setupApiDomain(
+                IConfig.API_BASE_URL,
                 App.getAppComponent(),
                 ApiService::class.java,
-                true
+                true,
+                app.beelabs.com.codebase.IConfig.TIMEOUT_SHORT_INSECOND,
+                BuildConfig.IS_DEBUG,
+                arrayOf(ChuckerInterceptor(context)),
+                null
             ) as ApiService
         }
 

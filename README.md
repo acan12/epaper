@@ -1,2 +1,2 @@
 # epaper
-Epaper magazine digital
+Epape digital magazine
