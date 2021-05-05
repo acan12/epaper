@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 class SignupResponse : BaseResponse() {
 
-    lateinit var responseCode: String
-    lateinit var responseStatus: String
+    var responseCode = ""
+    var responseStatus = ""
     lateinit var data: User
 }
