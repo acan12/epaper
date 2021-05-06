@@ -8,5 +8,5 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 class TransactionResponse : BaseResponse() {
     lateinit var responseCode: String
     lateinit var responseStatus: String
-    lateinit var data: Transaction
+    lateinit var data: List<Transaction>
 }

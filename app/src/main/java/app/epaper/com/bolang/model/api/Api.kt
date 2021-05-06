@@ -1,12 +1,17 @@
 package app.epaper.com.bolang.model.api
 
 import android.content.Context
-import app.epaper.com.bolang.App
-import app.epaper.com.bolang.IConfig
-import app.epaper.com.bolang.presenter.manager.SessionManager
 import app.beelabs.com.codebase.base.BaseApi
+import app.epaper.com.bolang.App
 import app.epaper.com.bolang.BuildConfig
+import app.epaper.com.bolang.IConfig
+import app.epaper.com.bolang.model.entity.reponse.*
+import app.epaper.com.bolang.model.entity.request.LoginRequest
+import app.epaper.com.bolang.model.entity.request.SignupRequest
+import app.epaper.com.bolang.model.entity.request.TransactionRequest
+import app.epaper.com.bolang.presenter.manager.SessionManager
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import io.reactivex.Observable
 
 
 class Api : BaseApi() {
@@ -33,6 +38,45 @@ class Api : BaseApi() {
                 arrayOf(ChuckerInterceptor(context)),
                 null
             ) as ApiService
+        }
+
+        @Synchronized
+        fun apiLogin(loginRequest: LoginRequest, context: Context): Observable<LoginResponse?>? {
+            return initApiDomain(context).callApiLogin(loginRequest)
+        }
+
+        @Synchronized
+        fun apiSignup(
+            signupRequest: SignupRequest,
+            context: Context
+        ): Observable<SignupResponse?>? {
+            return initApiDomain(context).callApiSignup(signupRequest)
+        }
+
+        @Synchronized
+        fun apiListContent(context: Context): Observable<ContentResponse?>? {
+            return initApiDomain(context).callApiContentEdition(initHeaderWithToken(context))
+        }
+
+
+        @Synchronized
+        fun apiSubscribeTransactionUser(transactionRequest: TransactionRequest, context: Context): Observable<TransactionResponse?>? {
+            return initApiDomain(context).callApiTransaction(initHeaderWithToken(context), transactionRequest)
+        }
+
+        @Synchronized
+        fun apiListTransactionUser(context: Context): Observable<TransactionResponse?>? {
+            return initApiDomain(context).callApiListTransactionUser(initHeaderWithToken(context))
+        }
+
+        @Synchronized
+        fun apiListProduct(context: Context): Observable<ProductResponse?>? {
+            return initApiDomain(context).callApiProduct(initHeaderWithToken(context))
+        }
+
+        @Synchronized
+        fun apiProfileUser(context: Context): Observable<ProfileResponse?>? {
+            return initApiDomain(context).callApiProfileUser(initHeaderWithToken(context))
         }
 
     }

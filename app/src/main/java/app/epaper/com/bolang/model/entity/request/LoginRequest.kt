@@ -1,6 +1,6 @@
 package app.epaper.com.bolang.model.entity.request
 
-class LoginRequest {
-    lateinit var email: String
-    lateinit var password: String
-}
+class LoginRequest(
+    var email: String,
+    var password: String
+)

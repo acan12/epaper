@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.beelabs.com.codebase.base.BaseFragment
-import app.epaper.com.bolang.App
+import app.epaper.com.bolang.R
 import app.epaper.com.bolang.databinding.FragmentHomeBinding
-import app.epaper.com.bolang.databinding.FragmentLoginBinding
-import app.epaper.com.bolang.model.entity.Epaper
+import app.epaper.com.bolang.presenter.manager.SessionManager
 import app.epaper.com.bolang.ui.adapter.EpaperCardAdapter
 import app.epaper.com.bolang.ui.tool.UiUtil
 import com.bumptech.glide.Glide
@@ -33,7 +31,10 @@ class HomeFragment : BaseFragment() {
         setupUI()
     }
 
-    private fun setupUI() = with(binding){
+    private fun setupUI() = with(binding) {
+        if (SessionManager.isSubscribe(root.context))
+            imageSubscribeIndicator.setImageResource(R.drawable.ic_checked_green)
+
         Glide.with(requireActivity())
             .load("https://epaper.solopos.com/assets/uploads/2021/04/01/0001.jpg")
             .diskCacheStrategy(DiskCacheStrategy.ALL)

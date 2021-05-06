@@ -27,11 +27,12 @@
                     android:textSize="16sp" />
 
             <ImageView
+                    android:id="@+id/image_subscribe_indicator"
                     android:layout_width="24dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_checked_grey" />
+                    android:src="@drawable/ic_checked_green" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
