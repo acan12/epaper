@@ -4,15 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.navArgs
 import app.beelabs.com.codebase.base.BaseFragment
+import app.beelabs.com.codebase.base.response.BaseResponse
 import app.epaper.com.bolang.App
-import app.epaper.com.bolang.databinding.FragmentHomeBinding
-import app.epaper.com.bolang.databinding.FragmentLoginBinding
 import app.epaper.com.bolang.databinding.FragmentPasswordBinding
-import app.epaper.com.bolang.databinding.FragmentSignupBinding
+import app.epaper.com.bolang.model.entity.request.SignupRequest
+import app.epaper.com.bolang.presenter.AuthPresenter
+import app.epaper.com.bolang.ui.impl.IAuthView
 
-class PasswordFragment : BaseFragment() {
+class PasswordFragment : BaseFragment(), IAuthView {
     private lateinit var binding: FragmentPasswordBinding
+    private val args by navArgs<PasswordFragmentArgs>()
+    lateinit var request: SignupRequest
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,9 +33,25 @@ class PasswordFragment : BaseFragment() {
         setupUI()
     }
 
-    private fun setupUI() = with(binding){
-        btnNext.setOnClickListener {
-            App.getNavigationComponent().authNavigation().navigatePasswordToLogin(root)
+    private fun setupUI() = with(binding) {
+        if (!arguments?.isEmpty!!) {
+            request = args.signupData!!
         }
+        btnNext.setOnClickListener {
+            val password = inputPassword.text.toString()
+            val confPassword = inputConfirmPassword.text.toString()
+            if (password != confPassword) Toast.makeText(
+                currentActivity,
+                "Invalid password",
+                Toast.LENGTH_SHORT
+            ).show()
+            else
+                request.password = password
+            AuthPresenter(this@PasswordFragment).onSignupUser(request)
+        }
+    }
+
+    override fun handleSuccess(data: BaseResponse) {
+        App.getNavigationComponent().authNavigation().navigatePasswordToLogin(binding.root)
     }
 }

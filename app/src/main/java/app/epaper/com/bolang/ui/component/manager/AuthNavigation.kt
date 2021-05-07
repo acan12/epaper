@@ -6,9 +6,10 @@ import android.content.Intent
 import android.view.View
 import androidx.navigation.Navigation
 import app.epaper.com.bolang.R
+import app.epaper.com.bolang.model.entity.request.SignupRequest
 import app.epaper.com.bolang.ui.activity.AuthActivity
 import app.epaper.com.bolang.ui.component.impl.IAuthNavigation
-import app.epaper.com.bolang.ui.component.impl.IHomeNavigation
+import app.epaper.com.bolang.ui.fragment.SignupFragmentDirections
 
 class AuthNavigation : IAuthNavigation {
 
@@ -21,8 +22,10 @@ class AuthNavigation : IAuthNavigation {
         Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signupFragment)
     }
 
-    override fun navigateToPassword(view: View) {
-        Navigation.findNavController(view).navigate(R.id.action_signupFragment_to_passwordFragment)
+    override fun navigateToPassword(data: SignupRequest, view: View) {
+        val action = SignupFragmentDirections
+            .actionSignupFragmentToPasswordFragment(data)
+        Navigation.findNavController(view).navigate(action)
     }
 
     override fun navigatePasswordToLogin(view: View) {

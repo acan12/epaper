@@ -35,7 +35,7 @@ class AuthPresenter(val iview: IView) : BasePresenter() {
             )
     }
 
-    fun onTransactionUser(request: SignupRequest){
+    fun onSignupUser(request: SignupRequest){
         repository.onCallApiSignup(request, iview as Context)
             ?.subscribe(
                 object: RxObserver<SignupResponse>(iview){

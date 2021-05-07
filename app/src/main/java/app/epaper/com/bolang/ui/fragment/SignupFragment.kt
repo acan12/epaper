@@ -9,9 +9,11 @@ import app.epaper.com.bolang.App
 import app.epaper.com.bolang.databinding.FragmentHomeBinding
 import app.epaper.com.bolang.databinding.FragmentLoginBinding
 import app.epaper.com.bolang.databinding.FragmentSignupBinding
+import app.epaper.com.bolang.model.entity.request.SignupRequest
 
 class SignupFragment : BaseFragment() {
     private lateinit var binding: FragmentSignupBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +30,13 @@ class SignupFragment : BaseFragment() {
     }
 
     private fun setupUI() = with(binding){
+        var signupRequest = SignupRequest(
+            inputUsername.text.toString(),
+            inputEmail.text.toString(),
+            inputPhone.text.toString(),
+            inputAddress.text.toString(),
+            ""
+        )
         btnNext.setOnClickListener {
             App.getNavigationComponent().authNavigation().navigateToPassword(root)
         }
