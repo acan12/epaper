@@ -11,6 +11,7 @@ class User {
     var address: String = ""
     var status: String = ""
     var blocked: Boolean = false
+    var has_subscribe: Boolean = false
     var subscribe_period_in_month = 0
     var subscribe_start_at = ""
     var subscribe_end_at = ""

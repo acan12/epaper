@@ -49,7 +49,7 @@ class LoginFragment : BaseFragment(), IAuthView {
             val data = (resp as LoginResponse)
             SessionManager.apply {
                 putCredential(data.token, currentActivity)
-                setSubscribe(data.data.subscribe_period_in_month == 0, currentActivity)
+                isSubscribe(data.data.subscribe_period_in_month == 0, currentActivity)
             }
 
             App.getNavigationComponent().homeNavigation()
