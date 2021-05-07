@@ -48,6 +48,7 @@ class LoginFragment : BaseFragment(), IAuthView {
         if (resp != null) {
             val data = (resp as LoginResponse)
             SessionManager.apply {
+                putPersonaFirstName(data.data.name[0].toString(), currentActivity)
                 putCredential(data.token, currentActivity)
                 isSubscribe(data.data.has_subscribe, currentActivity)
             }

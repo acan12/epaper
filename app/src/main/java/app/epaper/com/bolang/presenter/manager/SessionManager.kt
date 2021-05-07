@@ -6,14 +6,22 @@ import app.epaper.com.bolang.IConfig
 
 object SessionManager {
 
-    fun clearSessionLogin(context: Context) {
-        CacheUtil.putPreferenceString(IConfig.SESSION_TOKEN_CREDENTIAL, "", context)
-    }
-
     fun isLogin(context: Context): Boolean = getCredential(context).isNotEmpty()
 
     fun putCredential(token: String, context: Context) {
         CacheUtil.putPreferenceString(IConfig.SESSION_TOKEN_CREDENTIAL, token, context)
+    }
+
+    fun putPersonaFirstName(name: String, context: Context) {
+        CacheUtil.putPreferenceString(IConfig.SESSION_PERSONA_FIRSTNAME, name, context)
+    }
+
+    fun getPersonaFirstName(context: Context): String =
+        CacheUtil.getPreferenceString(IConfig.SESSION_PERSONA_FIRSTNAME, context)
+
+
+    fun clearSessionLogin(context: Context) {
+        CacheUtil.putPreferenceString(IConfig.SESSION_TOKEN_CREDENTIAL, "", context)
     }
 
     fun getCredential(context: Context): String {
@@ -27,6 +35,6 @@ object SessionManager {
     }
 
     fun isSubscribe(setSubscribe: Boolean = false, context: Context) {
-        CacheUtil.putPreferenceBoolean(IConfig.SESSION_SUBS_KEY, setSubscribe,context)!!
+        CacheUtil.putPreferenceBoolean(IConfig.SESSION_SUBS_KEY, setSubscribe, context)!!
     }
 }

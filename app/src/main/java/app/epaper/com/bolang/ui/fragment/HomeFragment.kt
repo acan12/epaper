@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.beelabs.com.codebase.base.BaseFragment
 import app.epaper.com.bolang.R
@@ -32,6 +33,8 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setupUI() = with(binding) {
+        if (SessionManager.isLogin(root.context))
+            avatarPersona.text = SessionManager.getPersonaFirstName(root.context)
         if (SessionManager.isSubscribe(root.context))
             imageSubscribeIndicator.setImageResource(R.drawable.ic_checked_green)
 
@@ -40,6 +43,9 @@ class HomeFragment : BaseFragment() {
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(mainContentImage)
         mainContentImage.setOnClickListener { UiUtil.showDetailEpaper(null, root) }
+        avatarPersona.setOnClickListener {
+            Toast.makeText(context, "To Persona", Toast.LENGTH_SHORT).show()
+        }
 
         var layout = LinearLayoutManager(activity)
         layout.orientation = LinearLayoutManager.HORIZONTAL

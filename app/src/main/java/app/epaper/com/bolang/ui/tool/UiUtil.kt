@@ -20,7 +20,7 @@ object UiUtil {
     }
 
     fun showDetailEpaper(epaper: Epaper?, view: View) {
-        if (SessionManager.isLogin(view.context)) {
+        if (!SessionManager.isLogin(view.context)) {
             App.getNavigationComponent()
                 .authNavigation()
                 .navigateToLogin(view.context)
