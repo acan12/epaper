@@ -38,7 +38,7 @@ class SignupFragment : BaseFragment() {
             ""
         )
         btnNext.setOnClickListener {
-            App.getNavigationComponent().authNavigation().navigateToPassword(root)
+            App.getNavigationComponent().authNavigation().navigateToPassword(signupRequest, root)
         }
     }
 }
