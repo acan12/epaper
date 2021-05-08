@@ -30,6 +30,10 @@ class HomeNavigation : IHomeNavigation {
         Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_subscribeFragment)
     }
 
+    override fun navigateToProfile(view: View, context: Context) {
+        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_profileFragment)
+    }
+
     override fun navigatePreviewToHome(view: View, context: Context) {
         Navigation.findNavController(view).navigate(R.id.action_pdfPreviewFragment_to_homeFragment2)
     }

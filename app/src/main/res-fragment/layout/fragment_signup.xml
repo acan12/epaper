@@ -6,6 +6,16 @@
         android:background="@color/color_white"
         android:paddingHorizontal="16dp">
 
+    <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_back_arrow"
+            android:background="@drawable/shap_rounded_border_grey"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
             android:id="@+id/header"
             android:layout_width="wrap_content"
@@ -73,8 +83,8 @@
             android:background="@drawable/bg_input_field"
             android:hint="Address"
             android:inputType="text"
-            android:singleLine="true"
             android:paddingHorizontal="10dp"
+            android:singleLine="true"
             app:layout_constraintTop_toBottomOf="@id/input_phone" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -82,7 +92,8 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/rounded_red_solid"
+            android:background="@drawable/bg_btn_blue_validation"
+            android:enabled="false"
             android:text="@string/continue_text"
             android:textAllCaps="false"
             android:textAppearance="@style/FontBook"

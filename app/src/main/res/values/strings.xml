@@ -38,4 +38,5 @@
     <string name="please_waiting">Harap tunggu sedang diproses</string>
     <string name="password_text">Put Your Password</string>
     <string name="password_description_text">Safety your account</string>
+    <string name="login_label">Login</string>
 </resources>

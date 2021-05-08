@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.navArgs
 import app.beelabs.com.codebase.base.BaseFragment
 import app.beelabs.com.codebase.base.response.BaseResponse
@@ -37,6 +38,15 @@ class PasswordFragment : BaseFragment(), IAuthView {
         if (!arguments?.isEmpty!!) {
             request = args.signupData!!
         }
+        inputPassword.doAfterTextChanged {
+            btnNext.isEnabled =
+                (inputPassword.length() > 1 && inputConfirmPassword.length() > 0)
+        }
+        inputConfirmPassword.doAfterTextChanged {
+            btnNext.isEnabled =
+                (inputPassword.length() > 1 && inputConfirmPassword.length() > 0)
+        }
+
         btnNext.setOnClickListener {
             val password = inputPassword.text.toString()
             val confPassword = inputConfirmPassword.text.toString()

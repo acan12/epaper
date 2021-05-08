@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import app.beelabs.com.codebase.base.BaseFragment
 import app.epaper.com.bolang.App
 import app.epaper.com.bolang.databinding.FragmentHomeBinding
@@ -30,15 +31,43 @@ class SignupFragment : BaseFragment() {
     }
 
     private fun setupUI() = with(binding){
-        var signupRequest = SignupRequest(
-            inputUsername.text.toString(),
-            inputEmail.text.toString(),
-            inputPhone.text.toString(),
-            inputAddress.text.toString(),
-            ""
-        )
+
+        checkButtonValidation()
         btnNext.setOnClickListener {
+            var signupRequest = SignupRequest(
+                inputUsername.text.toString(),
+                inputEmail.text.toString(),
+                inputPhone.text.toString(),
+                inputAddress.text.toString(),
+                ""
+            )
             App.getNavigationComponent().authNavigation().navigateToPassword(signupRequest, root)
+        }
+    }
+
+    private fun checkButtonValidation() = with(binding) {
+        inputUsername.doAfterTextChanged {
+            btnNext.isEnabled =
+                (inputUsername.length() > 1 && inputEmail.length() > 0
+                        && inputPhone.length() > 0 && inputAddress.length() > 0)
+        }
+
+        inputEmail.doAfterTextChanged {
+            btnNext.isEnabled =
+                (inputUsername.length() > 1 && inputEmail.length() > 0
+                        && inputPhone.length() > 0 && inputAddress.length() > 0)
+        }
+
+        inputPhone.doAfterTextChanged {
+            btnNext.isEnabled =
+                (inputUsername.length() > 1 && inputEmail.length() > 0
+                        && inputPhone.length() > 0 && inputAddress.length() > 0)
+        }
+
+        inputAddress.doAfterTextChanged {
+            btnNext.isEnabled =
+                (inputUsername.length() > 1 && inputEmail.length() > 0
+                        && inputPhone.length() > 0 && inputAddress.length() > 0)
         }
     }
 }

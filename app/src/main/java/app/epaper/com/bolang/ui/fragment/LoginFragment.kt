@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import app.beelabs.com.codebase.base.BaseFragment
 import app.beelabs.com.codebase.base.response.BaseResponse
 import app.epaper.com.bolang.App
@@ -36,7 +37,16 @@ class LoginFragment : BaseFragment(), IAuthView {
         headerDescription.setOnClickListener {
             App.getNavigationComponent().authNavigation().navigateToSignupForm(root)
         }
-        btnNext.setOnClickListener {
+
+        inputEmail.doAfterTextChanged {
+            btnSubmit.isEnabled = (inputEmail.length() > 1 && inputPassword.length() > 0)
+        }
+
+        inputPassword.doAfterTextChanged {
+            btnSubmit.isEnabled = (inputEmail.length() > 1 && inputPassword.length() > 0)
+        }
+
+        btnSubmit.setOnClickListener {
             val email = inputEmail.text.toString()
             val password = inputPassword.text.toString()
             AuthPresenter(this@LoginFragment).onLogin(LoginRequest(email, password))

@@ -18,4 +18,8 @@
     <color name="color_orange_ffc04c">#ffc04c</color>
     <color name="color_orange_ffdb99">#ffdb99</color>
     <color name="color_purle_993299">#993299</color>
+    <color name="color_blue_188fa7">#188fa7</color>
+    <color name="color_blue_light_button">#74bbca</color>
+    <color name="color_blue_button">@color/color_blue_188fa7</color>
+
 </resources>

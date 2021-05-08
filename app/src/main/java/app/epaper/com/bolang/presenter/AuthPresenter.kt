@@ -3,6 +3,7 @@ package app.epaper.com.bolang.presenter
 import android.content.Context
 import app.beelabs.com.codebase.base.BasePresenter
 import app.beelabs.com.codebase.base.contract.IView
+import app.beelabs.com.codebase.base.response.BaseResponse
 import app.beelabs.com.codebase.support.rx.RxObserver
 import app.epaper.com.bolang.model.entity.User
 import app.epaper.com.bolang.model.entity.reponse.LoginResponse
@@ -21,7 +22,7 @@ class AuthPresenter(val iview: IView) : BasePresenter() {
     fun onLogin(request: LoginRequest){
         repository.onCallApiLogin(request, iview.currentActivity)
             ?.subscribe(
-                object: RxObserver<LoginResponse>(iview){
+                object: RxObserver<LoginResponse>(iview, "Loading"){
                     override fun onNext(o: Any) {
                         super.onNext(o)
                         (iview as IAuthView).handleSuccess(o as LoginResponse)
@@ -36,11 +37,12 @@ class AuthPresenter(val iview: IView) : BasePresenter() {
     }
 
     fun onSignupUser(request: SignupRequest){
-        repository.onCallApiSignup(request, iview as Context)
+        repository.onCallApiSignup(request, iview.currentActivity)
             ?.subscribe(
-                object: RxObserver<SignupResponse>(iview){
+                object: RxObserver<SignupResponse>(iview, "Signup"){
                     override fun onNext(o: Any) {
                         super.onNext(o)
+                        (iview as IAuthView).handleSuccess(o as BaseResponse)
                     }
 
                     override fun onError(e: Throwable) {
