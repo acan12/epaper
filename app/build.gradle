@@ -107,6 +107,8 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     // Permission Access
     implementation 'com.karumi:dexter:6.2.2'
+    // mask
+    implementation 'io.github.vicmikhailau:MaskedEditText:4.0.5'
 
     // debug tools
     debugImplementation "com.github.chuckerteam.chucker:library:3.4.0"

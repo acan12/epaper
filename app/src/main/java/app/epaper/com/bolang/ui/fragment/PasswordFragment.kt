@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import app.beelabs.com.codebase.base.BaseFragment
 import app.beelabs.com.codebase.base.response.BaseResponse
 import app.epaper.com.bolang.App
+import app.epaper.com.bolang.R
 import app.epaper.com.bolang.databinding.FragmentPasswordBinding
 import app.epaper.com.bolang.model.entity.request.SignupRequest
 import app.epaper.com.bolang.presenter.AuthPresenter
@@ -38,6 +39,8 @@ class PasswordFragment : BaseFragment(), IAuthView {
         if (!arguments?.isEmpty!!) {
             request = args.signupData!!
         }
+
+        btnBack.setOnClickListener { App.getNavigationComponent().authNavigation().navigatePasswordToLogin(binding.root) }
         inputPassword.doAfterTextChanged {
             btnNext.isEnabled =
                 (inputPassword.length() > 1 && inputConfirmPassword.length() > 0)
@@ -52,12 +55,13 @@ class PasswordFragment : BaseFragment(), IAuthView {
             val confPassword = inputConfirmPassword.text.toString()
             if (password != confPassword) Toast.makeText(
                 currentActivity,
-                "Invalid password",
+                resources.getString(R.string.error_api_message),
                 Toast.LENGTH_SHORT
             ).show()
-            else
+            else {
                 request.password = password
-            AuthPresenter(this@PasswordFragment).onSignupUser(request)
+                AuthPresenter(this@PasswordFragment).onSignupUser(request)
+            }
         }
     }
 

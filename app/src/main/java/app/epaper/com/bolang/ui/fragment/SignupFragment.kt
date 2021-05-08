@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import app.beelabs.com.codebase.base.BaseFragment
 import app.epaper.com.bolang.App
-import app.epaper.com.bolang.databinding.FragmentHomeBinding
-import app.epaper.com.bolang.databinding.FragmentLoginBinding
 import app.epaper.com.bolang.databinding.FragmentSignupBinding
 import app.epaper.com.bolang.model.entity.request.SignupRequest
 
@@ -30,14 +28,17 @@ class SignupFragment : BaseFragment() {
         setupUI()
     }
 
-    private fun setupUI() = with(binding){
+    private fun setupUI() = with(binding) {
 
         checkButtonValidation()
+        btnBack.setOnClickListener {
+            App.getNavigationComponent().authNavigation().navigateSignupToLogin(binding.root)
+        }
         btnNext.setOnClickListener {
             var signupRequest = SignupRequest(
                 inputUsername.text.toString(),
                 inputEmail.text.toString(),
-                inputPhone.text.toString(),
+                inputPhone.text.toString().replace("-", "", false),
                 inputAddress.text.toString(),
                 ""
             )

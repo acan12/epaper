@@ -39,7 +39,7 @@ class SubscribeFragment : BaseFragment(), IHomeView {
 
         btnBack.setOnClickListener {
             App.getNavigationComponent().homeNavigation()
-                .navigateFromSubscribeToHome(root, currentActivity)
+                .navigateFromSubscribeToHome(root)
         }
         btnNext.setOnClickListener {
             SubscribeProcessingDialog(root, R.style.CoconutDialogFullScreen).show()

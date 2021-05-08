@@ -31,4 +31,8 @@ class AuthNavigation : IAuthNavigation {
     override fun navigatePasswordToLogin(view: View) {
         Navigation.findNavController(view).navigate(R.id.action_passwordFragment_to_loginFragment)
     }
+
+    override fun navigateSignupToLogin(view: View) {
+        Navigation.findNavController(view).navigate(R.id.action_signupFragment_to_loginFragment)
+    }
 }

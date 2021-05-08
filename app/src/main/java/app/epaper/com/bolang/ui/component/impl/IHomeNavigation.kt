@@ -6,7 +6,7 @@ import app.epaper.com.bolang.model.entity.Epaper
 
 interface IHomeNavigation : IBaseNavigation {
 
-    fun navigateToHome(view: View, context: Context)
+    fun navigateLoginToHome(view: View, context: Context)
 
     fun navigatePreviewToHome(view: View, context: Context)
 
@@ -16,7 +16,9 @@ interface IHomeNavigation : IBaseNavigation {
 
     fun navigateToPreview(item: Epaper, view: View)
 
-    fun navigateFromSubscribeToHome(view: View, context: Context)
+    fun navigateFromSubscribeToHome(view: View)
 
     fun navigateToProfile(view: View, context: Context)
+
+    fun navigateProfileToHome(view: View)
 }

@@ -33,7 +33,7 @@ class LoginFragment : BaseFragment(), IAuthView {
     }
 
     private fun setupUI() = with(binding) {
-        if(SessionManager.isLogin(root.context)) App.getNavigationComponent().homeNavigation().navigateToHome(root, currentActivity)
+        if(SessionManager.isLogin(root.context)) App.getNavigationComponent().homeNavigation().navigateLoginToHome(root, currentActivity)
         headerDescription.setOnClickListener {
             App.getNavigationComponent().authNavigation().navigateToSignupForm(root)
         }
@@ -49,6 +49,9 @@ class LoginFragment : BaseFragment(), IAuthView {
         btnSubmit.setOnClickListener {
             val email = inputEmail.text.toString()
             val password = inputPassword.text.toString()
+
+            inputEmail.setText("")
+            inputPassword.setText("")
             AuthPresenter(this@LoginFragment).onLogin(LoginRequest(email, password))
         }
     }
@@ -64,7 +67,7 @@ class LoginFragment : BaseFragment(), IAuthView {
             }
 
             App.getNavigationComponent().homeNavigation()
-                .navigateToHome(binding.root, currentActivity)
+                .navigateLoginToHome(binding.root, currentActivity)
         }
 
     }

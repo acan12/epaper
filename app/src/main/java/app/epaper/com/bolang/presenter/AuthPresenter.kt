@@ -1,6 +1,7 @@
 package app.epaper.com.bolang.presenter
 
 import android.content.Context
+import android.widget.Toast
 import app.beelabs.com.codebase.base.BasePresenter
 import app.beelabs.com.codebase.base.contract.IView
 import app.beelabs.com.codebase.base.response.BaseResponse
@@ -29,6 +30,7 @@ class AuthPresenter(val iview: IView) : BasePresenter() {
                     }
 
                     override fun onError(e: Throwable) {
+                        Toast.makeText(iview.currentActivity, e.message, Toast.LENGTH_SHORT).show()
                         super.onError(e)
                     }
                 }.setDialogType(RxObserver.DialogTypeEnum.DEFAULT)
@@ -39,13 +41,14 @@ class AuthPresenter(val iview: IView) : BasePresenter() {
     fun onSignupUser(request: SignupRequest){
         repository.onCallApiSignup(request, iview.currentActivity)
             ?.subscribe(
-                object: RxObserver<SignupResponse>(iview, "Signup"){
+                object: RxObserver<SignupResponse>(iview, "Processing"){
                     override fun onNext(o: Any) {
                         super.onNext(o)
                         (iview as IAuthView).handleSuccess(o as BaseResponse)
                     }
 
                     override fun onError(e: Throwable) {
+                        Toast.makeText(iview.currentActivity, e.message, Toast.LENGTH_SHORT).show()
                         super.onError(e)
                     }
                 }.setDialogType(RxObserver.DialogTypeEnum.DEFAULT)

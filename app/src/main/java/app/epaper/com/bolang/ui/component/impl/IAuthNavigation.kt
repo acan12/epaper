@@ -13,4 +13,5 @@ interface IAuthNavigation : IBaseNavigation {
     fun navigateToPassword(request: SignupRequest, view: View)
 
     fun navigatePasswordToLogin(view: View)
+    fun navigateSignupToLogin(view: View)
 }

@@ -18,7 +18,7 @@ class HomeNavigation : IHomeNavigation {
             .navigate(R.id.action_homeFragment_to_pdfPreviewFragment, bundle)
     }
 
-    override fun navigateToHome(view: View, context: Context) {
+    override fun navigateLoginToHome(view: View, context: Context) {
         Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment)
     }
 
@@ -38,7 +38,11 @@ class HomeNavigation : IHomeNavigation {
         Navigation.findNavController(view).navigate(R.id.action_pdfPreviewFragment_to_homeFragment2)
     }
 
-    override fun navigateFromSubscribeToHome(view: View, context: Context) {
+    override fun navigateFromSubscribeToHome(view: View) {
         Navigation.findNavController(view).navigate(R.id.action_subscribeFragment_to_homeFragment)
+    }
+
+    override fun navigateProfileToHome(view: View) {
+        Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_homeFragment)
     }
 }

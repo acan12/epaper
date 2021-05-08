@@ -41,6 +41,10 @@
                 android:id="@+id/action_signupFragment_to_passwordFragment"
                 app:destination="@id/passwordFragment"
                 app:popUpToInclusive="true" />
+        <action
+                android:id="@+id/action_signupFragment_to_loginFragment"
+                app:destination="@id/loginFragment"
+                app:popUpTo="@id/signupFragment" />
 
     </fragment>
     <fragment
@@ -50,8 +54,7 @@
         <action
                 android:id="@+id/action_subscribeFragment_to_homeFragment"
                 app:destination="@id/homeFragment"
-                app:popUpTo="@id/subscribeFragment"
-                app:popUpToInclusive="true" />
+                app:popUpTo="@id/subscribeFragment" />
     </fragment>
     <fragment
             android:id="@+id/pdfPreviewFragment"
@@ -77,8 +80,7 @@
         <action
                 android:id="@+id/action_passwordFragment_to_loginFragment"
                 app:destination="@id/loginFragment"
-                app:popUpTo="@id/passwordFragment"
-                app:popUpToInclusive="true" />
+                app:popUpTo="@id/passwordFragment" />
 
         <argument
                 android:name="signupData"
@@ -88,5 +90,10 @@
     <fragment
             android:id="@+id/profileFragment"
             android:name="app.epaper.com.bolang.ui.fragment.ProfileFragment"
-            android:label="ProfileFragment" />
+            android:label="ProfileFragment" >
+        <action
+                android:id="@+id/action_profileFragment_to_homeFragment"
+                app:destination="@id/homeFragment"
+                app:popUpTo="@id/profileFragment"/>
+    </fragment>
 </navigation>
