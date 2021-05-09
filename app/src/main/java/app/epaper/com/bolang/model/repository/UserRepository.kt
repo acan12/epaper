@@ -3,10 +3,7 @@ package app.epaper.com.bolang.model.repository
 import android.content.Context
 import app.beelabs.com.codebase.base.BaseDao
 import app.epaper.com.bolang.model.api.Api
-import app.epaper.com.bolang.model.entity.reponse.LoginResponse
-import app.epaper.com.bolang.model.entity.reponse.ProfileResponse
-import app.epaper.com.bolang.model.entity.reponse.SignupResponse
-import app.epaper.com.bolang.model.entity.reponse.TransactionResponse
+import app.epaper.com.bolang.model.entity.reponse.*
 import app.epaper.com.bolang.model.entity.request.LoginRequest
 import app.epaper.com.bolang.model.entity.request.SignupRequest
 import app.epaper.com.bolang.model.entity.request.TransactionRequest
@@ -32,7 +29,7 @@ class UserRepository : BaseDao() {
     fun onCallApiSubmitTransactionUser(
         transactionRequest: TransactionRequest,
         context: Context
-    ): Observable<TransactionResponse?>? {
+    ): Observable<SubscribeResponse?>? {
         return Api.apiSubscribeTransactionUser(transactionRequest, context)?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
     }

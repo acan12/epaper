@@ -25,19 +25,19 @@
         <item name="fontPath">font/CircularStd-Book.otf</item>
     </style>
 
-    <style name="FontInterBlack" parent="TextAppearance.AppCompat">
+    <style name="FontInterBlack" parent="android:TextAppearance">
         <item name="fontPath">font/Inter-Black.ttf</item>
     </style>
-    <style name="FontInterBold" parent="TextAppearance.AppCompat">
+    <style name="FontInterBold" parent="android:TextAppearance">
         <item name="fontPath">font/Inter-Bold.ttf</item>
     </style>
-    <style name="FontInterMedium" parent="TextAppearance.AppCompat">
+    <style name="FontInterMedium" parent="android:TextAppearance">
         <item name="fontPath">font/Inter-Medium.ttf</item>
     </style>
-    <style name="FontInterRegular" parent="TextAppearance.AppCompat">
+    <style name="FontInterRegular" parent="android:TextAppearance">
         <item name="fontPath">font/Inter-Regular.ttf</item>
     </style>
-    <style name="FontInterSemiBold" parent="TextAppearance.AppCompat">
+    <style name="FontInterSemiBold" parent="android:TextAppearance">
         <item name="fontPath">font/Inter-SemiBold.ttf</item>
     </style>
 

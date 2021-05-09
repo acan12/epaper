@@ -10,8 +10,8 @@ class Transaction {
     var payment: String = ""
     var status: String = ""
     var amount: String = ""
-    var buyer_name: Boolean = false
-    var buyer_phone = 0
+    var buyer_name: String = ""
+    var buyer_phone: String = ""
     var user_id = ""
     var created_at = ""
 }

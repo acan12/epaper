@@ -60,7 +60,7 @@ class Api : BaseApi() {
 
 
         @Synchronized
-        fun apiSubscribeTransactionUser(transactionRequest: TransactionRequest, context: Context): Observable<TransactionResponse?>? {
+        fun apiSubscribeTransactionUser(transactionRequest: TransactionRequest, context: Context): Observable<SubscribeResponse?>? {
             return initApiDomain(context).callApiTransaction(initHeaderWithToken(context), transactionRequest)
         }
 

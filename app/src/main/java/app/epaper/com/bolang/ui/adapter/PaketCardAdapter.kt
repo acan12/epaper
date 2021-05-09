@@ -4,15 +4,19 @@ import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import app.beelabs.com.codebase.support.util.CacheUtil
+import app.epaper.com.bolang.IConfig
 import app.epaper.com.bolang.R
 import app.epaper.com.bolang.databinding.ItemPaketCardBinding
 import app.epaper.com.bolang.model.entity.PaketSubscribeCard
+import app.epaper.com.bolang.model.entity.Product
+import app.epaper.com.bolang.model.entity.request.TransactionRequest
+import app.epaper.com.bolang.ui.tool.CoreUtil
 import app.epaper.com.bolang.ui.tool.UiUtil
 
 class PaketCardAdapter(
-    private val menus: List<PaketSubscribeCard>?,
+    private val products: List<Product>,
     val view: View,
     val res: Resources
 ) :
@@ -26,66 +30,29 @@ class PaketCardAdapter(
         return SubscribeViewHolder(itemBinding.root)
     }
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = products.size
 
 
     override fun onBindViewHolder(holder: SubscribeViewHolder, position: Int) {
-        var paket =
-            when (position) {
-                0 -> PaketSubscribeCard(
-                    "Trial",
-                    UiUtil.convertToCurrencyFormat(0),
-                    1,
-                    object : ItemClickListener() {
-                        override fun execute(view: View) {
-                            Toast.makeText(
-                                view.context,
-                                (position + 1).toString(),
-                                Toast.LENGTH_SHORT
-                            ).show()
-//                            App.getNavigationComponent().homeNavigation().navigateToBmcLogin(view)
-                        }
-                    }
-                )
-                1 -> PaketSubscribeCard(
-                    "Paket 6 bulan",
-                    UiUtil.convertToCurrencyFormat(500000),
-                    6,
-                    object : ItemClickListener() {
-                        override fun execute(view: View) {
-                            Toast.makeText(
-                                view.context,
-                                (position + 1).toString(),
-                                Toast.LENGTH_SHORT
-                            ).show()
-//                            App.getNavigationComponent().homeNavigation().navigateToBmcLogin(view)
-                        }
-                    }
-                )
-                2 -> PaketSubscribeCard(
-                    "Paket 12 bulan",
-                    UiUtil.convertToCurrencyFormat(1000000),
-                    8,
-                    object : ItemClickListener() {
-                        override fun execute(view: View) {
-                            Toast.makeText(
-                                view.context,
-                                (position + 1).toString(),
-                                Toast.LENGTH_SHORT
-                            ).show()
-//                            App.getNavigationComponent().homeNavigation().navigateToBmcLogin(view)
-                        }
-                    }
-                )
-                else -> null
-            }
-        with(holder.binding) {
+        var paket = products[position]
 
+        with(holder.binding) {
             itemName.text = paket?.name
-            itemPrice.text = paket?.price
+            itemPrice.text = UiUtil.convertToCurrencyFormat(paket?.price.toFloat().toInt())
             itemPaket.tag = false
             root.setOnClickListener {
-                var x = prevSelected?.tag
+                val jsonStr = CoreUtil.convertObjectToJsonString(
+                    TransactionRequest(
+                        paket.name,
+                        paket.price.toFloat().toInt(),
+                        paket.period_in_month.toInt()
+                    )
+                )
+                CacheUtil.putPreferenceString(
+                    IConfig.KEY_SUBSCRIBE_PRODUCT_SELECTED,
+                    jsonStr, root.context
+                )
+
                 var switchOn = itemPaket.tag
                 if (switchOn == false) {
                     itemPaket.tag = true
@@ -102,11 +69,5 @@ class PaketCardAdapter(
 
     inner class SubscribeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemPaketCardBinding.bind(view)
-    }
-
-    open class ItemClickListener {
-        open fun execute(view: View) {
-
-        }
     }
 }

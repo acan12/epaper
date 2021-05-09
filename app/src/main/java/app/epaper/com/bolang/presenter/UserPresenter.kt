@@ -1,14 +1,17 @@
 package app.epaper.com.bolang.presenter
 
 import android.content.Context
+import android.widget.Toast
 import app.beelabs.com.codebase.base.BasePresenter
 import app.beelabs.com.codebase.base.contract.IView
 import app.beelabs.com.codebase.support.rx.RxObserver
 import app.epaper.com.bolang.model.entity.reponse.ContentResponse
+import app.epaper.com.bolang.model.entity.reponse.SubscribeResponse
 import app.epaper.com.bolang.model.entity.reponse.TransactionResponse
 import app.epaper.com.bolang.model.entity.request.TransactionRequest
 import app.epaper.com.bolang.model.repository.ResourceRepository
 import app.epaper.com.bolang.model.repository.UserRepository
+import app.epaper.com.bolang.ui.impl.IHomeView
 
 class UserPresenter(var iview: IView) : BasePresenter() {
 
@@ -34,20 +37,20 @@ class UserPresenter(var iview: IView) : BasePresenter() {
     }
 
     fun onSubmit(request: TransactionRequest) {
-        repository.onCallApiSubmitTransactionUser(request, iview as Context)
+        repository.onCallApiSubmitTransactionUser(request, iview.currentActivity)
             ?.subscribe(
-                object : RxObserver<ContentResponse>(iview) {
+                object : RxObserver<SubscribeResponse>(iview, "Processing") {
 
                     override fun onNext(o: Any) {
                         super.onNext(o)
-//                        (iview as IView).handleDataSuccess(o as ProgramResponse)
+                        (iview as IHomeView).handleSubscribeSuccess(o as SubscribeResponse)
                     }
 
                     override fun onError(e: Throwable) {
+                        Toast.makeText(iview.currentActivity, e.message, Toast.LENGTH_SHORT).show()
                         super.onError(e)
-//                        (iview.currentActivity as MainActivity).handleUserUnauthorized(e as HttpException)
                     }
-                }.setDialogType(RxObserver.DialogTypeEnum.SPINKIT)
+                }.setDialogType(RxObserver.DialogTypeEnum.DEFAULT)
                     .setEnableCoconutAlertConnection(true)
             )
     }

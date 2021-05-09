@@ -31,7 +31,7 @@ interface ApiService {
     fun callApiTransaction(
         @HeaderMap header: Map<String, String>,
         @Body request: TransactionRequest
-    ): Observable<TransactionResponse?>?
+    ): Observable<SubscribeResponse?>?
 
     @GET("api/v1/transactions")
     fun callApiListTransactionUser(
