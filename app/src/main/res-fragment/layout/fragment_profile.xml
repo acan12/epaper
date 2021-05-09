@@ -94,7 +94,7 @@
             android:background="@drawable/rounded_border_blue"
             android:gravity="center_vertical|right"
             android:paddingRight="20dp"
-            android:text="Subscribed"
+            android:text="@string/subscribe_text"
             android:textColor="@color/color_blue_188fa7"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_email" />

@@ -5,45 +5,30 @@ import android.widget.Toast
 import app.beelabs.com.codebase.base.BasePresenter
 import app.beelabs.com.codebase.base.contract.IView
 import app.beelabs.com.codebase.support.rx.RxObserver
-import app.epaper.com.bolang.model.entity.reponse.ContentResponse
+import app.epaper.com.bolang.R
+import app.epaper.com.bolang.model.entity.reponse.ProfileResponse
 import app.epaper.com.bolang.model.entity.reponse.SubscribeResponse
 import app.epaper.com.bolang.model.entity.reponse.TransactionResponse
 import app.epaper.com.bolang.model.entity.request.TransactionRequest
-import app.epaper.com.bolang.model.repository.ResourceRepository
 import app.epaper.com.bolang.model.repository.UserRepository
-import app.epaper.com.bolang.ui.impl.IHomeView
+import app.epaper.com.bolang.ui.impl.ISubscribeView
+import app.epaper.com.bolang.ui.impl.IProfileView
 
 class UserPresenter(var iview: IView) : BasePresenter() {
 
     private val repository: UserRepository = UserRepository()
 
     fun onProfile() {
-        repository.onCallApiProfile(iview as Context)
+        repository.onCallApiProfile(iview.currentActivity)
             ?.subscribe(
-                object : RxObserver<ContentResponse>(iview) {
+                object : RxObserver<ProfileResponse>(
+                    iview,
+                    iview.currentActivity.getString(R.string.update_data_loading)
+                ) {
 
                     override fun onNext(o: Any) {
                         super.onNext(o)
-//                        (iview as IView).handleDataSuccess(o as ProgramResponse)
-                    }
-
-                    override fun onError(e: Throwable) {
-                        super.onError(e)
-//                        (iview.currentActivity as MainActivity).handleUserUnauthorized(e as HttpException)
-                    }
-                }.setDialogType(RxObserver.DialogTypeEnum.SPINKIT)
-                    .setEnableCoconutAlertConnection(true)
-            )
-    }
-
-    fun onSubmit(request: TransactionRequest) {
-        repository.onCallApiSubmitTransactionUser(request, iview.currentActivity)
-            ?.subscribe(
-                object : RxObserver<SubscribeResponse>(iview, "Processing") {
-
-                    override fun onNext(o: Any) {
-                        super.onNext(o)
-                        (iview as IHomeView).handleSubscribeSuccess(o as SubscribeResponse)
+                        (iview as IProfileView).handleProfileSuccess(o as ProfileResponse)
                     }
 
                     override fun onError(e: Throwable) {
@@ -55,10 +40,29 @@ class UserPresenter(var iview: IView) : BasePresenter() {
             )
     }
 
-    fun onTransactionUser(){
+    fun onSubmit(request: TransactionRequest) {
+        repository.onCallApiSubmitTransactionUser(request, iview.currentActivity)
+            ?.subscribe(
+                object : RxObserver<SubscribeResponse>(iview, "Processing") {
+
+                    override fun onNext(o: Any) {
+                        super.onNext(o)
+                        (iview as ISubscribeView).handleSubscribeSuccess(o as SubscribeResponse)
+                    }
+
+                    override fun onError(e: Throwable) {
+                        Toast.makeText(iview.currentActivity, e.message, Toast.LENGTH_SHORT).show()
+                        super.onError(e)
+                    }
+                }.setDialogType(RxObserver.DialogTypeEnum.DEFAULT)
+                    .setEnableCoconutAlertConnection(true)
+            )
+    }
+
+    fun onTransactionUser() {
         repository.onCallApiTransactionUser(iview as Context)
             ?.subscribe(
-                object: RxObserver<TransactionResponse>(iview){
+                object : RxObserver<TransactionResponse>(iview) {
                     override fun onNext(o: Any) {
                         super.onNext(o)
                     }

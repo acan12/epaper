@@ -34,7 +34,7 @@ object SessionManager {
         return CacheUtil.getPreferenceBoolean(IConfig.SESSION_SUBS_KEY, context)!!
     }
 
-    fun isSubscribe(setSubscribe: Boolean = false, context: Context) {
+    fun setSubscribe(setSubscribe: Boolean = false, context: Context) {
         CacheUtil.putPreferenceBoolean(IConfig.SESSION_SUBS_KEY, setSubscribe, context)!!
     }
 }

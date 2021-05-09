@@ -2,6 +2,7 @@ package app.epaper.com.bolang.ui.component.impl
 
 import android.content.Context
 import android.view.View
+import app.epaper.com.bolang.model.entity.Content
 import app.epaper.com.bolang.model.entity.Epaper
 
 interface IHomeNavigation : IBaseNavigation {
@@ -14,7 +15,7 @@ interface IHomeNavigation : IBaseNavigation {
 
     fun navigateToSubscribe(view: View, context: Context)
 
-    fun navigateToPreview(item: Epaper, view: View)
+    fun navigateToPreview(item: Content, view: View)
 
     fun navigateFromSubscribeToHome(view: View)
 

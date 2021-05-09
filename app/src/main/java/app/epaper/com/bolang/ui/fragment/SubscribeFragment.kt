@@ -1,7 +1,6 @@
 package app.epaper.com.bolang.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,20 +12,18 @@ import app.epaper.com.bolang.App
 import app.epaper.com.bolang.IConfig
 import app.epaper.com.bolang.R
 import app.epaper.com.bolang.databinding.FragmentSubscribeBinding
-import app.epaper.com.bolang.model.entity.reponse.ContentResponse
 import app.epaper.com.bolang.model.entity.reponse.ProductResponse
 import app.epaper.com.bolang.model.entity.reponse.SubscribeResponse
-import app.epaper.com.bolang.model.entity.reponse.TransactionResponse
 import app.epaper.com.bolang.model.entity.request.TransactionRequest
 import app.epaper.com.bolang.presenter.ResourcePresenter
 import app.epaper.com.bolang.presenter.UserPresenter
 import app.epaper.com.bolang.ui.adapter.PaketCardAdapter
 import app.epaper.com.bolang.ui.dialog.SubscribeProcessingDialog
-import app.epaper.com.bolang.ui.impl.IHomeView
+import app.epaper.com.bolang.ui.impl.ISubscribeView
 import app.epaper.com.bolang.ui.tool.CoreUtil
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class SubscribeFragment : BaseFragment(), IHomeView {
+class SubscribeFragment : BaseFragment(), ISubscribeView {
     private lateinit var binding: FragmentSubscribeBinding
 
     override fun onCreateView(

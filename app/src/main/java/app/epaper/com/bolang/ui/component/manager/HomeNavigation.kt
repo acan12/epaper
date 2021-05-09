@@ -5,15 +5,18 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import app.epaper.com.bolang.IConfig
+import app.epaper.com.bolang.IConfig.Companion.API_BASE_URL
 import app.epaper.com.bolang.R
-import app.epaper.com.bolang.model.entity.Epaper
+import app.epaper.com.bolang.model.entity.Content
 import app.epaper.com.bolang.ui.component.impl.IHomeNavigation
 
 class HomeNavigation : IHomeNavigation {
-    override fun navigateToPreview(item: Epaper, view: View) {
-        var bundle = bundleOf(IConfig.ARG_ID_PDF to item.id,
-            IConfig.ARG_NAME_PDF to item.name,
-            IConfig.ARG_URL_PDF_LINK to item.urlEpaper)
+    override fun navigateToPreview(item: Content, view: View) {
+        var bundle = bundleOf(
+            IConfig.ARG_ID_PDF to item.id,
+            IConfig.ARG_NAME_PDF to item.title,
+            IConfig.ARG_URL_PDF_LINK to API_BASE_URL + item.pdf_doc
+        )
         Navigation.findNavController(view)
             .navigate(R.id.action_homeFragment_to_pdfPreviewFragment, bundle)
     }

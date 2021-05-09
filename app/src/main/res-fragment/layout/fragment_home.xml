@@ -1,105 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/swipe_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-            android:id="@+id/toolbar"
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:cardElevation="20dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
-        <RelativeLayout
+        <androidx.cardview.widget.CardView
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="?actionBarSize"
+                app:cardElevation="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                    android:id="@+id/avatar_persona"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAllCaps="true"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:layout_marginLeft="16dp"
-                    android:textColor="@color/color_white"
-                    android:background="@drawable/shap_rounded_purple"
-                    android:gravity="center"
-                    android:layout_centerVertical="true" />
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="Home"
-                    android:textColor="@color/color_blue_073f65"
-                    android:textSize="16sp" />
+                <TextView
+                        android:id="@+id/avatar_persona"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:background="@drawable/shap_rounded_purple"
+                        android:gravity="center"
+                        android:text="A"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="@color/color_white" />
 
-            <ImageView
-                    android:id="@+id/image_subscribe_indicator"
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_checked_grey" />
-        </RelativeLayout>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="Home"
+                        android:textColor="@color/color_blue_073f65"
+                        android:textSize="16sp" />
 
-    </androidx.cardview.widget.CardView>
+                <ImageView
+                        android:id="@+id/image_subscribe_indicator"
+                        android:layout_width="24dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/ic_checked_grey" />
+            </RelativeLayout>
 
-    <androidx.cardview.widget.CardView
-            android:id="@+id/main_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="10dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            tools:ignore="MissingConstraints">
+        </androidx.cardview.widget.CardView>
 
-        <RelativeLayout
+        <androidx.cardview.widget.CardView
+                android:id="@+id/main_content"
                 android:layout_width="match_parent"
-                android:layout_height="450dp">
+                android:layout_height="wrap_content"
+                app:cardElevation="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                tools:ignore="MissingConstraints">
 
-            <ImageView
-                    android:id="@+id/main_content_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerHorizontal="true"
-                    android:padding="10dp"
-                    android:src="@drawable/demo_banner" />
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp">
 
-            <View
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/color_blue_transparent50" />
+                <ImageView
+                        android:id="@+id/main_content_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:padding="10dp"
+                        android:src="@drawable/demo_banner" />
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="-10dp"
-                    android:rotation="-90"
-                    android:text="Edisi Utama"
-                    android:textAlignment="center"
-                    android:textColor="#3e5a70" />
+                <View
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/color_blue_transparent50" />
 
-        </RelativeLayout>
+                <ProgressBar
+                        android:id="@+id/item_progressbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:indeterminateTint="@color/color_blue_light_button" />
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="-10dp"
+                        android:rotation="-90"
+                        android:text="Edisi Utama"
+                        android:textAlignment="center"
+                        android:textColor="#3e5a70" />
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_edition_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/main_content" />
+            </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_edition_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/main_content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

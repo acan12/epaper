@@ -63,7 +63,7 @@ class LoginFragment : BaseFragment(), IAuthView {
             SessionManager.apply {
                 putPersonaFirstName(data.data.name[0].toString(), currentActivity)
                 putCredential(data.token, currentActivity)
-                isSubscribe(data.data.has_subscribe, currentActivity)
+                setSubscribe(data.data.has_subscribe, currentActivity)
             }
 
             App.getNavigationComponent().homeNavigation()

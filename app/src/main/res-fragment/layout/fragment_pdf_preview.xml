@@ -41,7 +41,7 @@
                         android:layout_toRightOf="@id/btn_back"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:text="Pdf Sample file"
+                        android:text="@string/triple_dot"
                         android:textColor="@color/color_black_transparent80"
                         android:textSize="14sp"
                         android:textStyle="bold" />

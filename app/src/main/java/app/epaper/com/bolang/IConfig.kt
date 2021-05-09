@@ -12,7 +12,7 @@ interface IConfig {
         const val SESSION_SUBS_KEY = "session_subscriber"
         const val ARG_URL_PDF_LINK = "urlPdfLink"
         var ARG_ID_PDF = "idPdf"
-        var ARG_NAME_PDF = "namePfg"
+        var ARG_NAME_PDF = "namePdf"
 
     }
 }
