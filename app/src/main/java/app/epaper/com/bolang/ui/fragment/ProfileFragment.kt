@@ -33,7 +33,7 @@ class ProfileFragment : BaseFragment(), IProfileView {
     private fun setupUI() = with(binding) {
         if (SessionManager.isSubscribe(currentActivity)) itemStatusSubscribe.setTextColor(
             resources.getColor(
-                R.color.color_grey_999999
+                R.color.color_blue_188fa7
             )
         )
 

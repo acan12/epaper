@@ -5,6 +5,6 @@ import app.beelabs.com.codebase.base.response.BaseResponse
 
 interface ISubscribeView : IView {
     fun handleListSubscribeSuccess(data: BaseResponse)
-
+    fun handleSelectedProduct()
     fun handleSubscribeSuccess(data: BaseResponse)
 }

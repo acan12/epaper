@@ -22,7 +22,9 @@ class Api : BaseApi() {
             //   CacheUtil.getPreferenceString(IConfig.SESSION_TOKEN_CREDENTIAL, context)
             val map = HashMap<String, String>()
             map["Content-Type"] = "application/json"
-            map["Authorization"] = "Bearer $bearerValue"
+            if (bearerValue.isNotEmpty())
+                map["Authorization"] = "Bearer $bearerValue"
+
             return map
         }
 
@@ -60,8 +62,14 @@ class Api : BaseApi() {
 
 
         @Synchronized
-        fun apiSubscribeTransactionUser(transactionRequest: TransactionRequest, context: Context): Observable<SubscribeResponse?>? {
-            return initApiDomain(context).callApiTransaction(initHeaderWithToken(context), transactionRequest)
+        fun apiSubscribeTransactionUser(
+            transactionRequest: TransactionRequest,
+            context: Context
+        ): Observable<SubscribeResponse?>? {
+            return initApiDomain(context).callApiTransaction(
+                initHeaderWithToken(context),
+                transactionRequest
+            )
         }
 
         @Synchronized

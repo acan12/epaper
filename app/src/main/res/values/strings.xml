@@ -46,4 +46,5 @@
     <string name="address_text">Address</string>
     <string name="update_data_loading">Update data</string>
     <string name="triple_dot">...</string>
+    <string name="skip_label">Skip</string>
 </resources>

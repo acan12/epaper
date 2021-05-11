@@ -39,10 +39,7 @@ class HomeFragment : BaseFragment(), IHomeView {
     }
 
     private fun setupUI() = with(binding) {
-        if (SessionManager.isLogin(root.context))
-            avatarPersona.text = SessionManager.getPersonaFirstName(root.context)
-        if (SessionManager.isSubscribe(root.context))
-            imageSubscribeIndicator.setImageResource(R.drawable.ic_checked_green)
+        showHeaderInfo()
 
         avatarPersona.setOnClickListener {
             App.getNavigationComponent().homeNavigation().navigateToProfile(root, currentActivity)
@@ -58,8 +55,23 @@ class HomeFragment : BaseFragment(), IHomeView {
         }
     }
 
+    private fun showHeaderInfo() = with(binding){
+        if (SessionManager.isLogin(root.context))
+            avatarPersona.text = SessionManager.getPersonaFirstName(root.context)
+        else {
+            avatarPersona.visibility = View.INVISIBLE
+            imageSubscribeIndicator.visibility = View.INVISIBLE
+        }
+        if (SessionManager.isSubscribe(root.context))
+            imageSubscribeIndicator.setImageResource(R.drawable.ic_checked_green)
+        else
+            imageSubscribeIndicator.setImageResource(R.drawable.ic_checked_grey)
+
+    }
+
     fun showDetailEpaper(content: Content?, view: View) {
         if (!SessionManager.isLogin(view.context)) {
+            SessionManager.setSkip(false, currentActivity)
             App.getNavigationComponent()
                 .authNavigation()
                 .navigateToLogin(view.context)
@@ -75,6 +87,7 @@ class HomeFragment : BaseFragment(), IHomeView {
     override fun handleSuccess(data: BaseResponse) {
         var resp = data as ContentResponse
         SessionManager.setSubscribe(resp.meta.hasSubscribe, currentActivity)
+        showHeaderInfo()
         if (resp.contents != null) {
             with(binding) {
                 var contents = resp.contents.reversed()

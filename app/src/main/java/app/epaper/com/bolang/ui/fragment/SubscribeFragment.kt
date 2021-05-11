@@ -52,19 +52,22 @@ class SubscribeFragment : BaseFragment(), ISubscribeView {
             var request = CoreUtil
                 .getObjectFromJsonStringCache(jsonString, TransactionRequest::class.java) as TransactionRequest
             UserPresenter(this@SubscribeFragment).onSubmit(request)
-//            Log.d("", "")
         }
     }
 
     override fun handleListSubscribeSuccess(data: BaseResponse) {
         var products = (data as ProductResponse).data
         binding.rvGridPackage.adapter =
-            PaketCardAdapter(products, binding.root, this@SubscribeFragment.resources)
+            PaketCardAdapter(products, this, this@SubscribeFragment.resources)
     }
 
     override fun handleSubscribeSuccess(data: BaseResponse) {
         var resp = data as SubscribeResponse
         if(resp.data != null)
             SubscribeProcessingDialog(binding.root, R.style.CoconutDialogFullScreen).show()
+    }
+
+    override fun handleSelectedProduct() {
+        binding.btnNext.isEnabled =true
     }
 }

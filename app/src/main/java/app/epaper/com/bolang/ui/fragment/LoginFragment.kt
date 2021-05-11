@@ -33,7 +33,9 @@ class LoginFragment : BaseFragment(), IAuthView {
     }
 
     private fun setupUI() = with(binding) {
-        if(SessionManager.isLogin(root.context)) App.getNavigationComponent().homeNavigation().navigateLoginToHome(root, currentActivity)
+        if(SessionManager.isLogin(root.context) || SessionManager.isSkip(root.context))
+            App.getNavigationComponent().homeNavigation().navigateLoginToHome(root, currentActivity)
+
         headerDescription.setOnClickListener {
             App.getNavigationComponent().authNavigation().navigateToSignupForm(root)
         }
@@ -44,6 +46,12 @@ class LoginFragment : BaseFragment(), IAuthView {
 
         inputPassword.doAfterTextChanged {
             btnSubmit.isEnabled = (inputEmail.length() > 1 && inputPassword.length() > 0)
+        }
+
+        btnSkip.setOnClickListener {
+            SessionManager.setSkip(true, currentActivity)
+            App.getNavigationComponent().homeNavigation()
+                .navigateLoginToHome(binding.root, currentActivity)
         }
 
         btnSubmit.setOnClickListener {

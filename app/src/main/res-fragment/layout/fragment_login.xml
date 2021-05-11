@@ -67,21 +67,46 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="@string/agreement_login"
-            app:layout_constraintBottom_toTopOf="@id/btn_submit"
+            app:layout_constraintBottom_toTopOf="@id/btn_layout"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_submit"
+    <LinearLayout
+            android:id="@+id/btn_layout"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_btn_blue_validation"
-            android:text="@string/login_label"
-            android:textAllCaps="false"
-            android:textAppearance="@style/FontBook"
-            android:textColor="@color/color_white"
-            android:textSize="16sp"
-            android:enabled="false"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_skip"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="24dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_blue"
+                android:text="@string/skip_label"
+                android:textAllCaps="false"
+                android:textAppearance="@style/FontBook"
+                android:textColor="@color/color_orange_ffc04c"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="24dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_blue_validation"
+                android:enabled="false"
+                android:text="@string/login_label"
+                android:textAllCaps="false"
+                android:textAppearance="@style/FontBook"
+                android:textColor="@color/color_white"
+                android:textSize="16sp" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
