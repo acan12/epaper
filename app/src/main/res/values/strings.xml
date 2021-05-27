@@ -47,4 +47,8 @@
     <string name="update_data_loading">Update data</string>
     <string name="triple_dot">...</string>
     <string name="skip_label">Skip</string>
+    <string name="main_edition">Edisi Utama</string>
+    <string name="full_read_detail">Baca Selengkapnya</string>
+    <string name="previous_edition">Edisi Sebelumnya</string>
+    <string name="show_all">Lihat Semua</string>
 </resources>
