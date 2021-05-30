@@ -22,4 +22,8 @@ interface IHomeNavigation : IBaseNavigation {
     fun navigateToProfile(view: View, context: Context)
 
     fun navigateProfileToHome(view: View)
+
+    fun navigateHomeToListEdition(view: View)
+
+    fun navigateBackListEdition(view: View)
 }

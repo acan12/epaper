@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.beelabs.com.codebase.base.BaseFragment
 import app.beelabs.com.codebase.base.response.BaseResponse
@@ -20,6 +21,7 @@ import app.epaper.com.bolang.ui.dialog.SubscribeOfferDialog
 import app.epaper.com.bolang.ui.impl.IHomeView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment(), IHomeView {
     private lateinit var binding: FragmentHomeBinding
@@ -40,7 +42,9 @@ class HomeFragment : BaseFragment(), IHomeView {
 
     private fun setupUI() = with(binding) {
         showHeaderInfo()
-
+        btnShowAll.setOnClickListener {
+            App.getNavigationComponent().homeNavigation().navigateHomeToListEdition(it)
+        }
         avatarPersona.setOnClickListener {
             App.getNavigationComponent().homeNavigation().navigateToProfile(root, currentActivity)
         }
@@ -55,7 +59,7 @@ class HomeFragment : BaseFragment(), IHomeView {
         }
     }
 
-    private fun showHeaderInfo() = with(binding){
+    private fun showHeaderInfo() = with(binding) {
         if (SessionManager.isLogin(root.context))
             avatarPersona.text = SessionManager.getPersonaFirstName(root.context)
         else {
@@ -88,10 +92,11 @@ class HomeFragment : BaseFragment(), IHomeView {
         var resp = data as ContentResponse
         SessionManager.setSubscribe(resp.meta.hasSubscribe, currentActivity)
         showHeaderInfo()
-        if (resp.contents != null) {
-            with(binding) {
+        with(binding) {
+            if (resp.contents != null || resp.contents.isNotEmpty()) {
+
                 var contents = resp.contents.reversed()
-                swipeContainer.setRefreshing(false);
+                swipeContainer.isRefreshing = false;
                 Glide.with(requireActivity())
                     .load(API_BASE_URL + contents[0].cover_image_url)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -102,7 +107,11 @@ class HomeFragment : BaseFragment(), IHomeView {
 
                 rvEditionView.adapter = EpaperCardAdapter(contents, this@HomeFragment)
 
+            } else {
+                itemProgressbar.visibility = View.GONE
+                Toast.makeText(currentActivity, "Data tidak ditemukann", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
 }

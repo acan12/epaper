@@ -48,4 +48,12 @@ class HomeNavigation : IHomeNavigation {
     override fun navigateProfileToHome(view: View) {
         Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_homeFragment)
     }
+
+    override fun navigateHomeToListEdition(view: View) {
+        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_listPdfEditionFragment)
+    }
+
+    override fun navigateBackListEdition(view: View) {
+        Navigation.findNavController(view).navigate(R.id.action_listPdfEditionFragment_to_homeFragment)
+    }
 }
