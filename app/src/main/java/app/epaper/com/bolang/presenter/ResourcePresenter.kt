@@ -14,8 +14,18 @@ class ResourcePresenter(val iview: IView) : BasePresenter() {
 
     private val repository: ResourceRepository = ResourceRepository()
 
-    fun onListContent() {
-        repository.onCallApiListContent(iview.currentActivity)
+    fun onListContent(
+        query: String = "",
+        sortby: String = "asc",
+        page: String = "1",
+        perPage: String = "10"
+    ) {
+        var queryMap = HashMap<String, String>()
+        queryMap["q"] = query
+        queryMap["sortby"] = sortby
+        queryMap["page"] = page
+        queryMap["per_page"] = perPage
+        repository.onCallApiListContent(queryMap, iview.currentActivity)
             ?.subscribe(
                 object : RxObserver<ContentResponse>(iview) {
 

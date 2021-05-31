@@ -2,6 +2,9 @@ package app.epaper.com.bolang
 
 interface IConfig {
     companion object {
+        const val DATE_FORMAT_TZ = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        const val SORT_ASC = "asc"
+        const val SORT_DESC = "desc"
 
         val KEY_SUBSCRIBE_PRODUCT_SELECTED: String? = "subscribe_product_selected"
         const val SESSION_PERSONA_FIRSTNAME: String = "persona_firstname"

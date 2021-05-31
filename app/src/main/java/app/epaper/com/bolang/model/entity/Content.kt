@@ -10,4 +10,5 @@ class Content {
     var cover_image_thumb_url = ""
     var cover_image_small_url = ""
     var pdf_doc = ""
+    var created_at = ""
 }

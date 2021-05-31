@@ -56,8 +56,8 @@ class Api : BaseApi() {
         }
 
         @Synchronized
-        fun apiListContent(context: Context): Observable<ContentResponse?>? {
-            return initApiDomain(context).callApiContentEdition(initHeaderWithToken(context))
+        fun apiListContent(queryMap: Map<String, String>, context: Context): Observable<ContentResponse?>? {
+            return initApiDomain(context).callApiContentEdition(initHeaderWithToken(context), queryMap)
         }
 
 

@@ -53,4 +53,6 @@
     <string name="show_all">Lihat Semua</string>
     <string name="search_hint">Search...</string>
     <string name="oldest">Terlama</string>
+    <string name="loading_text">Loading...</string>
+    <string name="data_not_found">Data tidak ditemukan</string>
 </resources>

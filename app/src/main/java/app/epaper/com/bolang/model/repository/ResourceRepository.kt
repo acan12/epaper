@@ -12,10 +12,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class ResourceRepository : BaseDao() {
-    fun onCallApiListContent(
+    fun onCallApiListContent(queryMap: Map<String, String>,
         context: Context
     ): Observable<ContentResponse?>? {
-        return Api.apiListContent(context)?.subscribeOn(Schedulers.io())
+        return Api.apiListContent(queryMap, context)?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
     }
 

@@ -5,10 +5,7 @@ import app.epaper.com.bolang.model.entity.request.LoginRequest
 import app.epaper.com.bolang.model.entity.request.SignupRequest
 import app.epaper.com.bolang.model.entity.request.TransactionRequest
 import io.reactivex.Observable
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.HeaderMap
-import retrofit2.http.POST
+import retrofit2.http.*
 
 
 interface ApiService {
@@ -22,7 +19,7 @@ interface ApiService {
     fun callApiProfileUser(@HeaderMap header: Map<String, String>): Observable<ProfileResponse?>?
 
     @GET("api/v1/contents")
-    fun callApiContentEdition(@HeaderMap header: Map<String, String>): Observable<ContentResponse?>?
+    fun callApiContentEdition(@HeaderMap header: Map<String, String>, @QueryMap(encoded = true) params :Map<String, String>): Observable<ContentResponse?>?
 
     @GET("api/v1/package_products")
     fun callApiProduct(@HeaderMap header: Map<String, String>): Observable<ProductResponse?>?

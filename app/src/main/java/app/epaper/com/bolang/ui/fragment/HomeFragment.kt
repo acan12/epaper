@@ -73,7 +73,7 @@ class HomeFragment : BaseFragment(), IHomeView {
 
     }
 
-    fun showDetailEpaper(content: Content?, view: View) {
+    override fun showDetailEpaper(content: Content?, view: View) {
         if (!SessionManager.isLogin(view.context)) {
             SessionManager.setSkip(false, currentActivity)
             App.getNavigationComponent()
@@ -93,7 +93,7 @@ class HomeFragment : BaseFragment(), IHomeView {
         SessionManager.setSubscribe(resp.meta.hasSubscribe, currentActivity)
         showHeaderInfo()
         with(binding) {
-            if (resp.contents != null || resp.contents.isNotEmpty()) {
+            if (resp.contents.isNotEmpty()) {
 
                 var contents = resp.contents.reversed()
                 swipeContainer.isRefreshing = false;
@@ -103,13 +103,14 @@ class HomeFragment : BaseFragment(), IHomeView {
                     .into(mainContentImage)
 
                 itemProgressbar.visibility = View.GONE
+                itemProgressbarMessage.visibility = View.GONE
                 mainContentImage.setOnClickListener { showDetailEpaper(contents[0], root) }
 
                 rvEditionView.adapter = EpaperCardAdapter(contents, this@HomeFragment)
 
             } else {
-                itemProgressbar.visibility = View.GONE
-                Toast.makeText(currentActivity, "Data tidak ditemukann", Toast.LENGTH_SHORT).show()
+                itemProgressbar.visibility = View.INVISIBLE
+                itemProgressbarMessage.text = resources.getString(R.string.data_not_found)
             }
         }
     }

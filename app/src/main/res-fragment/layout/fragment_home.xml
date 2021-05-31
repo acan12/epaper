@@ -96,16 +96,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_below="@id/title_info"
+                    android:src="@drawable/pdf_placeholder"
                     android:layout_centerHorizontal="true"
                     android:padding="10dp" />
 
             <ProgressBar
                     android:id="@+id/item_progressbar"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/title_info"
-                    android:layout_centerInParent="true"
+                    android:layout_marginTop="100dp"
+                    android:layout_centerHorizontal="true"
                     android:indeterminateTint="@color/color_blue_light_button" />
+
+            <TextView
+                    android:id="@+id/item_progressbar_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/loading_text"
+                    android:layout_below="@+id/item_progressbar" />
 
 
         </RelativeLayout>
