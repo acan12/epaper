@@ -26,12 +26,6 @@ class EpaperEditionAdapter(private val contents: List<Content>?, private val ivi
         holder.bind(content!!, iview)
     }
 
-    fun addData(content: Content?) {
-        var data = (contents as ArrayList)
-        data.add(content!!)
-        notifyItemRangeChanged(data.size, 10)
-    }
-
     class EpaperCardViewHolder(private val itemBinding: ItemEpaperEditionBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(content: Content, iview: IHomeView) {
