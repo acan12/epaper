@@ -16,7 +16,7 @@ class ResourcePresenter(val iview: IView) : BasePresenter() {
 
     fun onListContent(
         query: String = "",
-        sortby: String = "asc",
+        sortby: String = "desc",
         page: String = "1",
         perPage: String = "10"
     ) {

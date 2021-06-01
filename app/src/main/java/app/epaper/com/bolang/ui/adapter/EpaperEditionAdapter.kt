@@ -32,8 +32,8 @@ class EpaperEditionAdapter(private val contents: List<Content>?, private val ivi
             itemBinding.apply {
                 itemTitle.text = content.title
                 itemDate.text = UiUtil.convertStringToDateWithFormat(
-                    content.created_at,
-                    IConfig.DATE_FORMAT_TZ,
+                    content.release_date,
+                    IConfig.YYYY_MM_DD,
                     "dd MMMM yyyy"
                 )
 

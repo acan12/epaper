@@ -29,7 +29,7 @@ class ListPdfEditionFragment : BaseFragment(), IHomeView {
     private var totalData = 0
 
     private var query: String = ""
-    private var sortby: String = "desc"
+    private lateinit var sortby: String
 
 
     override fun onCreateView(
