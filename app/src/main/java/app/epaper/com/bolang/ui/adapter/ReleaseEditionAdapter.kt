@@ -4,17 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.epaper.com.bolang.IConfig
-import app.epaper.com.bolang.databinding.ItemEpaperEditionBinding
+import app.epaper.com.bolang.databinding.ItemReleaseEditionBinding
 import app.epaper.com.bolang.model.entity.Content
 import app.epaper.com.bolang.ui.impl.IHomeView
 import app.epaper.com.bolang.ui.tool.UiUtil
 
-class EpaperEditionAdapter(private val contents: List<Content>?, private val iview: IHomeView) :
-    RecyclerView.Adapter<EpaperEditionAdapter.EpaperCardViewHolder>() {
+class ReleaseEditionAdapter(private val contents: List<Content>?, private val iview: IHomeView) :
+    RecyclerView.Adapter<ReleaseEditionAdapter.EpaperCardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpaperCardViewHolder {
         val itemBinding =
-            ItemEpaperEditionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemReleaseEditionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return EpaperCardViewHolder(itemBinding)
     }
 
@@ -26,7 +26,7 @@ class EpaperEditionAdapter(private val contents: List<Content>?, private val ivi
         holder.bind(content!!, iview)
     }
 
-    class EpaperCardViewHolder(private val itemBinding: ItemEpaperEditionBinding) :
+    class EpaperCardViewHolder(private val itemBinding: ItemReleaseEditionBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(content: Content, iview: IHomeView) {
             itemBinding.apply {

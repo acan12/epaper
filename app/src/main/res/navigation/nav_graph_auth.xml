@@ -101,7 +101,7 @@
     </fragment>
     <fragment
             android:id="@+id/listPdfEditionFragment"
-            android:name="app.epaper.com.bolang.ui.fragment.ListPdfEditionFragment"
+            android:name="app.epaper.com.bolang.ui.fragment.ReleaseEditionFragment"
             android:label="ListPdfEditionFragment">
         <action
                 android:id="@+id/action_listPdfEditionFragment_to_homeFragment"

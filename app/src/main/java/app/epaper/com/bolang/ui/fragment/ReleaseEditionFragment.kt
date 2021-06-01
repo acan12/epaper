@@ -13,17 +13,17 @@ import app.beelabs.com.codebase.base.response.BaseResponse
 import app.epaper.com.bolang.App
 import app.epaper.com.bolang.IConfig
 import app.epaper.com.bolang.R
-import app.epaper.com.bolang.databinding.FragmentListPdfeditionBinding
+import app.epaper.com.bolang.databinding.FragmentReleaseEditionBinding
 import app.epaper.com.bolang.model.entity.Content
 import app.epaper.com.bolang.model.entity.reponse.ContentResponse
 import app.epaper.com.bolang.presenter.ResourcePresenter
 import app.epaper.com.bolang.presenter.manager.SessionManager
-import app.epaper.com.bolang.ui.adapter.EpaperEditionAdapter
+import app.epaper.com.bolang.ui.adapter.ReleaseEditionAdapter
 import app.epaper.com.bolang.ui.dialog.SubscribeOfferDialog
 import app.epaper.com.bolang.ui.impl.IHomeView
 
-class ListPdfEditionFragment : BaseFragment(), IHomeView {
-    private lateinit var binding: FragmentListPdfeditionBinding
+class ReleaseEditionFragment : BaseFragment(), IHomeView {
+    private lateinit var binding: FragmentReleaseEditionBinding
     private var loading = false
     private var nextPage = 1
     private var totalData = 0
@@ -37,7 +37,7 @@ class ListPdfEditionFragment : BaseFragment(), IHomeView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentListPdfeditionBinding.inflate(layoutInflater)
+        binding = FragmentReleaseEditionBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -100,12 +100,12 @@ class ListPdfEditionFragment : BaseFragment(), IHomeView {
                 }
             }
         })
-        ResourcePresenter(this@ListPdfEditionFragment).onListContent()
+        ResourcePresenter(this@ReleaseEditionFragment).onListContent()
     }
 
     private fun doListReleaseEdition(q: String, sortby: String, page: Int) {
         binding.itemProgressbar.visibility = View.VISIBLE
-        ResourcePresenter(this@ListPdfEditionFragment).onListContent(q, sortby, page.toString())
+        ResourcePresenter(this@ReleaseEditionFragment).onListContent(q, sortby, page.toString())
     }
 
     override fun handleSuccess(data: BaseResponse) {
@@ -115,7 +115,7 @@ class ListPdfEditionFragment : BaseFragment(), IHomeView {
                 rvList.visibility = View.VISIBLE
                 itemProgressbar.visibility = View.GONE
                 itemProgressbarMessage.visibility = View.GONE
-                rvList.adapter = EpaperEditionAdapter(result.contents, this@ListPdfEditionFragment)
+                rvList.adapter = ReleaseEditionAdapter(result.contents, this@ReleaseEditionFragment)
 
                 nextPage++
             } else {
@@ -123,9 +123,7 @@ class ListPdfEditionFragment : BaseFragment(), IHomeView {
                 itemProgressbar.visibility = View.INVISIBLE
                 itemProgressbarMessage.text = resources.getString(R.string.data_not_found)
             }
-
         }
-
     }
 
     override fun showDetailEpaper(content: Content?, view: View) {

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.beelabs.com.codebase.base.BaseFragment
 import app.beelabs.com.codebase.base.response.BaseResponse
@@ -107,6 +106,7 @@ class HomeFragment : BaseFragment(), IHomeView {
                 mainContentImage.setOnClickListener { showDetailEpaper(contents[0], root) }
 
                 rvEditionView.adapter = EpaperCardAdapter(contents, this@HomeFragment)
+                slideIndicator.attachToRecyclerView(rvEditionView)
 
             } else {
                 itemProgressbar.visibility = View.INVISIBLE
