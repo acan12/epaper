@@ -17,6 +17,7 @@ import app.epaper.com.bolang.model.entity.reponse.SubscribeResponse
 import app.epaper.com.bolang.model.entity.request.TransactionRequest
 import app.epaper.com.bolang.presenter.ResourcePresenter
 import app.epaper.com.bolang.presenter.UserPresenter
+import app.epaper.com.bolang.presenter.manager.SessionManager
 import app.epaper.com.bolang.ui.adapter.PaketCardAdapter
 import app.epaper.com.bolang.ui.dialog.SubscribeProcessingDialog
 import app.epaper.com.bolang.ui.impl.ISubscribeView
@@ -63,8 +64,10 @@ class SubscribeFragment : BaseFragment(), ISubscribeView {
 
     override fun handleSubscribeSuccess(data: BaseResponse) {
         var resp = data as SubscribeResponse
-        if(resp.data != null)
+        if(resp.data != null) {
             SubscribeProcessingDialog(binding.root, R.style.CoconutDialogFullScreen).show()
+            SessionManager.setSkip(false, currentActivity)
+        }
     }
 
     override fun handleSelectedProduct() {

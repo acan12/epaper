@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#4eb67d</color>
-    <color name="colorPrimaryDark">#2f9aaf</color>
+    <color name="colorPrimaryDark">#073f65</color>
     <color name="colorAccent">@color/color_blue_073f65</color>
     <color name="color_blue_transparent50">#7F6897bb</color>
     <color name="colorCoconut_background_dialog">@color/color_blue_transparent50</color>

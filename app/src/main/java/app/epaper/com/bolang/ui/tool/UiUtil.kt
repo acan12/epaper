@@ -1,14 +1,6 @@
 package app.epaper.com.bolang.ui.tool
 
-import android.content.Context
-import android.view.View
 import app.beelabs.com.codebase.IConfig
-import app.epaper.com.bolang.App
-import app.epaper.com.bolang.R
-import app.epaper.com.bolang.model.entity.Content
-import app.epaper.com.bolang.model.entity.Epaper
-import app.epaper.com.bolang.presenter.manager.SessionManager
-import app.epaper.com.bolang.ui.dialog.SubscribeOfferDialog
 import java.text.NumberFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -26,15 +18,15 @@ object UiUtil {
 
     fun convertStringToDateWithFormat(
         dateInput: String?,
-        inputTime: String?,
-        outputTime: String?
+        inputFormatTime: String?,
+        outputFormatTime: String?
     ): String? {
         val date1 = dateInput?.replace("\\.\\d+".toRegex(), "")
         val tz = TimeZone.getTimeZone("GMT+07:00")
         var timeDisplay: String? = null
         val calendar = Calendar.getInstance(tz)
-        val inputFormatTime = SimpleDateFormat(inputTime, Locale.US)
-        val outputFormatTime = SimpleDateFormat(outputTime, Locale.US)
+        val inputFormatTime = SimpleDateFormat(inputFormatTime, Locale.US)
+        val outputFormatTime = SimpleDateFormat(outputFormatTime, Locale.US)
         outputFormatTime.calendar = calendar
         var date: Date? = null
         var dateString = ""

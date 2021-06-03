@@ -16,6 +16,8 @@ class ContentResponse : BaseResponse() {
     lateinit var meta: Meta
 
     inner class Meta {
+        @JsonProperty("transaction_status")
+        lateinit var transactionStatus: String
         @JsonProperty("has_subscribe")
         var hasSubscribe: Boolean = false
     }

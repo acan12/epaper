@@ -20,6 +20,7 @@ import app.epaper.com.bolang.presenter.ResourcePresenter
 import app.epaper.com.bolang.presenter.manager.SessionManager
 import app.epaper.com.bolang.ui.adapter.ReleaseEditionAdapter
 import app.epaper.com.bolang.ui.dialog.SubscribeOfferDialog
+import app.epaper.com.bolang.ui.dialog.SubscribeProcessingDialog
 import app.epaper.com.bolang.ui.impl.IHomeView
 
 class ReleaseEditionFragment : BaseFragment(), IHomeView {
@@ -110,6 +111,10 @@ class ReleaseEditionFragment : BaseFragment(), IHomeView {
 
     override fun handleSuccess(data: BaseResponse) {
         var result = data as ContentResponse
+
+        SessionManager.setSubscribe(result.meta.hasSubscribe, currentActivity)
+        SessionManager.setSubscribeStatus(result.meta.transactionStatus, currentActivity)
+
         with(binding) {
             if (result.contents.isNotEmpty()) {
                 rvList.visibility = View.VISIBLE
@@ -133,7 +138,10 @@ class ReleaseEditionFragment : BaseFragment(), IHomeView {
                 .authNavigation()
                 .navigateToLogin(view.context)
         } else if (!SessionManager.isSubscribe(view.context)) {
-            SubscribeOfferDialog(view, R.style.CoconutDialogFullScreen).show()
+            if (SessionManager.getSubscribeStatus(view.context) == IConfig.STATUS_PENDING)
+                SubscribeProcessingDialog(binding.root, R.style.CoconutDialogFullScreen).show()
+            else
+                SubscribeOfferDialog(view, R.style.CoconutDialogFullScreen).show()
         } else {
             App.getNavigationComponent()
                 .homeNavigation()

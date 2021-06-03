@@ -33,7 +33,7 @@ class ReleaseEditionAdapter(private val contents: List<Content>?, private val iv
                 itemTitle.text = content.title
                 itemDate.text = UiUtil.convertStringToDateWithFormat(
                     content.release_date,
-                    IConfig.YYYY_MM_DD,
+                    IConfig.yyyy_MM_dd,
                     "dd MMMM yyyy"
                 )
 

@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.beelabs.com.codebase.base.BaseFragment
 import app.beelabs.com.codebase.base.response.BaseResponse
 import app.epaper.com.bolang.App
+import app.epaper.com.bolang.IConfig
 import app.epaper.com.bolang.IConfig.Companion.API_BASE_URL
+import app.epaper.com.bolang.IConfig.Companion.STATUS_PENDING
 import app.epaper.com.bolang.R
 import app.epaper.com.bolang.databinding.FragmentHomeBinding
 import app.epaper.com.bolang.model.entity.Content
@@ -17,7 +19,9 @@ import app.epaper.com.bolang.presenter.ResourcePresenter
 import app.epaper.com.bolang.presenter.manager.SessionManager
 import app.epaper.com.bolang.ui.adapter.EpaperCardAdapter
 import app.epaper.com.bolang.ui.dialog.SubscribeOfferDialog
+import app.epaper.com.bolang.ui.dialog.SubscribeProcessingDialog
 import app.epaper.com.bolang.ui.impl.IHomeView
+import app.epaper.com.bolang.ui.tool.UiUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -79,7 +83,10 @@ class HomeFragment : BaseFragment(), IHomeView {
                 .authNavigation()
                 .navigateToLogin(view.context)
         } else if (!SessionManager.isSubscribe(view.context)) {
-            SubscribeOfferDialog(view, R.style.CoconutDialogFullScreen).show()
+            if (SessionManager.getSubscribeStatus(view.context) == STATUS_PENDING)
+                SubscribeProcessingDialog(binding.root, R.style.CoconutDialogFullScreen).show()
+            else
+                SubscribeOfferDialog(view, R.style.CoconutDialogFullScreen).show()
         } else {
             App.getNavigationComponent()
                 .homeNavigation()
@@ -90,6 +97,8 @@ class HomeFragment : BaseFragment(), IHomeView {
     override fun handleSuccess(data: BaseResponse) {
         var resp = data as ContentResponse
         SessionManager.setSubscribe(resp.meta.hasSubscribe, currentActivity)
+        SessionManager.setSubscribeStatus(resp.meta.transactionStatus, currentActivity)
+
         showHeaderInfo()
         with(binding) {
             if (resp.contents.isNotEmpty()) {
@@ -103,6 +112,12 @@ class HomeFragment : BaseFragment(), IHomeView {
 
                 itemProgressbar.visibility = View.GONE
                 itemProgressbarMessage.visibility = View.GONE
+                mainEditionDate.text = UiUtil.convertStringToDateWithFormat(
+                    contents[0].release_date,
+                    IConfig.yyyy_MM_dd,
+                    IConfig.dd_MMM_yyyy
+                )
+                btnDetail.setOnClickListener { showDetailEpaper(contents[0], root) }
                 mainContentImage.setOnClickListener { showDetailEpaper(contents[0], root) }
 
                 rvEditionView.adapter = EpaperCardAdapter(contents, this@HomeFragment)
