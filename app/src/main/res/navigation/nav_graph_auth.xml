@@ -31,8 +31,8 @@
                 android:id="@+id/action_homeFragment_to_profileFragment"
                 app:destination="@id/profileFragment" />
         <action
-                android:id="@+id/action_homeFragment_to_listPdfEditionFragment"
-                app:destination="@id/listPdfEditionFragment" />
+                android:id="@+id/action_homeFragment_to_releaseEditionFragment"
+                app:destination="@id/releaseEditionFragment" />
 
 
     </fragment>
@@ -100,12 +100,19 @@
                 app:popUpTo="@id/profileFragment" />
     </fragment>
     <fragment
-            android:id="@+id/listPdfEditionFragment"
+            android:id="@+id/releaseEditionFragment"
             android:name="app.epaper.com.bolang.ui.fragment.ReleaseEditionFragment"
-            android:label="ListPdfEditionFragment">
+            android:label="ReleaseEditionFragment">
         <action
-                android:id="@+id/action_listPdfEditionFragment_to_homeFragment"
+                android:id="@+id/action_releaseEditionFragment_to_homeFragment"
                 app:destination="@id/homeFragment"
-                app:popUpTo="@id/listPdfEditionFragment" />
+                app:popUpTo="@id/releaseEditionFragment" />
+        <action
+                android:id="@+id/action_releaseEditionFragment_to_pdfPreviewFragment"
+                app:destination="@id/pdfPreviewFragment" />
+        <action
+                android:id="@+id/action_releaseEditionFragment_to_subscribeFragment"
+                app:destination="@id/subscribeFragment" />
+
     </fragment>
 </navigation>

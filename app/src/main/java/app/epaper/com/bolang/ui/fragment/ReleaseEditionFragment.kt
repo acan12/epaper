@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import app.beelabs.com.codebase.base.BaseDialog
 import app.beelabs.com.codebase.base.BaseFragment
 import app.beelabs.com.codebase.base.response.BaseResponse
 import app.epaper.com.bolang.App
@@ -21,9 +22,10 @@ import app.epaper.com.bolang.presenter.manager.SessionManager
 import app.epaper.com.bolang.ui.adapter.ReleaseEditionAdapter
 import app.epaper.com.bolang.ui.dialog.SubscribeOfferDialog
 import app.epaper.com.bolang.ui.dialog.SubscribeProcessingDialog
+import app.epaper.com.bolang.ui.impl.IDialogSubscribeView
 import app.epaper.com.bolang.ui.impl.IHomeView
 
-class ReleaseEditionFragment : BaseFragment(), IHomeView {
+class ReleaseEditionFragment : BaseFragment(), IHomeView, IDialogSubscribeView {
     private lateinit var binding: FragmentReleaseEditionBinding
     private var loading = false
     private var nextPage = 1
@@ -48,7 +50,7 @@ class ReleaseEditionFragment : BaseFragment(), IHomeView {
 
     private fun setupUI() = with(binding) {
         btnBack.setOnClickListener {
-            App.getNavigationComponent().homeNavigation().navigateBackListEdition(it)
+            App.getNavigationComponent().homeNavigation().navigateBackReleaseEdition(it)
         }
         inputSearchBox.doAfterTextChanged {
             nextPage = 1
@@ -139,14 +141,21 @@ class ReleaseEditionFragment : BaseFragment(), IHomeView {
                 .navigateToLogin(view.context)
         } else if (!SessionManager.isSubscribe(view.context)) {
             if (SessionManager.getSubscribeStatus(view.context) == IConfig.STATUS_PENDING)
-                SubscribeProcessingDialog(binding.root, R.style.CoconutDialogFullScreen).show()
+                SubscribeProcessingDialog(this, R.style.CoconutDialogFullScreen).show()
             else
-                SubscribeOfferDialog(view, R.style.CoconutDialogFullScreen).show()
+                SubscribeOfferDialog(this, R.style.CoconutDialogFullScreen).show()
         } else {
             App.getNavigationComponent()
                 .homeNavigation()
-                .navigateToPreview(content!!, view)
+                .navigateReleaseEditionToPdfPreview(content!!, view)
         }
     }
 
+    override fun handleButtonNextClicked(dialog: BaseDialog) {
+        dialog.dismiss()
+    }
+
+    override fun handleButtonJoinClicked(dialog: BaseDialog) {
+        App.getNavigationComponent().homeNavigation().navigateReleaseEditionToSubscribe(binding.root)
+    }
 }

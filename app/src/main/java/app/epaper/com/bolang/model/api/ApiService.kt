@@ -15,8 +15,8 @@ interface ApiService {
     @POST("api/v1/users")
     fun callApiSignup(@Body request: SignupRequest): Observable<SignupResponse?>?
 
-    @GET("api/v1/users/1")
-    fun callApiProfileUser(@HeaderMap header: Map<String, String>): Observable<ProfileResponse?>?
+    @GET("api/v1/users/{id}")
+    fun callApiProfileUser(@HeaderMap header: Map<String, String>, @Path("id") id: String): Observable<ProfileResponse?>?
 
     @GET("api/v1/contents")
     fun callApiContentEdition(@HeaderMap header: Map<String, String>, @QueryMap(encoded = true) params :Map<String, String>): Observable<ContentResponse?>?

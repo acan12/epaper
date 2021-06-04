@@ -20,11 +20,18 @@ object SessionManager {
         CacheUtil.putPreferenceString(IConfig.SESSION_TOKEN_CREDENTIAL, token, context)
     }
 
-    fun putPersonaFirstName(name: String, context: Context) {
+    fun putPersonaId(id: String, context: Context) {
+        CacheUtil.putPreferenceString(IConfig.SESSION_PERSONA_ID, id, context)
+    }
+
+    fun getPersonaId(context: Context): String =
+        CacheUtil.getPreferenceString(IConfig.SESSION_PERSONA_ID, context)
+
+    fun putPersonaUserName(name: String, context: Context) {
         CacheUtil.putPreferenceString(IConfig.SESSION_PERSONA_FIRSTNAME, name, context)
     }
 
-    fun getPersonaFirstName(context: Context): String =
+    fun getPersonaUserName(context: Context): String =
         CacheUtil.getPreferenceString(IConfig.SESSION_PERSONA_FIRSTNAME, context)
 
 
@@ -52,14 +59,13 @@ object SessionManager {
 
     fun getSubscribeStatus(context: Context): Int {
         var status = CacheUtil.getPreferenceString(IConfig.SESSION_STATUS_SUBS_KEY, context)!!
-        return when(status){
+        return when (status) {
             STATUS_PENDING_TEXT -> STATUS_PENDING
             STATUS_DONE_TEXT -> STATUS_DONE
             STATUS_CANCEL_TEXT -> STATUS_CANCEL
             else -> 0
         }
     }
-
 
 
     fun setSkip(setSkip: Boolean = false, context: Context) {

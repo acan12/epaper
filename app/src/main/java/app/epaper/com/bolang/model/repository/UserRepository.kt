@@ -13,9 +13,10 @@ import io.reactivex.schedulers.Schedulers
 
 class UserRepository : BaseDao() {
     fun onCallApiProfile(
+        id: String,
         context: Context
     ): Observable<ProfileResponse?>? {
-        return Api.apiProfileUser(context)?.subscribeOn(Schedulers.io())
+        return Api.apiProfileUser(id, context)?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
     }
 

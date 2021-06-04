@@ -10,6 +10,7 @@ interface IConfig {
 
         val KEY_SUBSCRIBE_PRODUCT_SELECTED: String? = "subscribe_product_selected"
         const val SESSION_PERSONA_FIRSTNAME: String = "persona_firstname"
+        const val SESSION_PERSONA_ID: String = "persona_id"
         const val TEXT_NAME_OF_PDF_REPLACEMENT: String = "[idPDF]"
         const val API_BASE_URL = "http://188.166.254.157:4000/"
         const val SESSION_TOKEN_CREDENTIAL = ""

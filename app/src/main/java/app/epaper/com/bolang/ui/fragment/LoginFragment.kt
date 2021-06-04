@@ -69,9 +69,10 @@ class LoginFragment : BaseFragment(), IAuthView {
         if (resp != null) {
             val data = (resp as LoginResponse)
             SessionManager.apply {
-                putPersonaFirstName(data.data.name[0].toString(), currentActivity)
+                putPersonaId(data.user.id, currentActivity)
+                putPersonaUserName(data.user.name, currentActivity)
                 putCredential(data.token, currentActivity)
-                setSubscribe(data.data.has_subscribe, currentActivity)
+                setSubscribe(data.user.has_subscribe, currentActivity)
             }
 
             App.getNavigationComponent().homeNavigation()

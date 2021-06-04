@@ -83,8 +83,8 @@ class Api : BaseApi() {
         }
 
         @Synchronized
-        fun apiProfileUser(context: Context): Observable<ProfileResponse?>? {
-            return initApiDomain(context).callApiProfileUser(initHeaderWithToken(context))
+        fun apiProfileUser(id: String, context: Context): Observable<ProfileResponse?>? {
+            return initApiDomain(context).callApiProfileUser(initHeaderWithToken(context), id)
         }
 
     }

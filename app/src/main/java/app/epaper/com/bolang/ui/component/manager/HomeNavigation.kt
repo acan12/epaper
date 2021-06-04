@@ -21,6 +21,16 @@ class HomeNavigation : IHomeNavigation {
             .navigate(R.id.action_homeFragment_to_pdfPreviewFragment, bundle)
     }
 
+    override fun navigateReleaseEditionToPdfPreview(item: Content, view: View) {
+        var bundle = bundleOf(
+            IConfig.ARG_ID_PDF to item.id,
+            IConfig.ARG_NAME_PDF to item.title,
+            IConfig.ARG_URL_PDF_LINK to API_BASE_URL + item.pdf_doc
+        )
+        Navigation.findNavController(view)
+            .navigate(R.id.action_releaseEditionFragment_to_pdfPreviewFragment, bundle)
+    }
+
     override fun navigateLoginToHome(view: View, context: Context) {
         Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment)
     }
@@ -49,11 +59,15 @@ class HomeNavigation : IHomeNavigation {
         Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_homeFragment)
     }
 
-    override fun navigateHomeToListEdition(view: View) {
-        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_listPdfEditionFragment)
+    override fun navigateHomeToReleaseEdition(view: View) {
+        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_releaseEditionFragment)
     }
 
-    override fun navigateBackListEdition(view: View) {
-        Navigation.findNavController(view).navigate(R.id.action_listPdfEditionFragment_to_homeFragment)
+    override fun navigateBackReleaseEdition(view: View) {
+        Navigation.findNavController(view).navigate(R.id.action_releaseEditionFragment_to_homeFragment)
+    }
+
+    override fun navigateReleaseEditionToSubscribe(view: View) {
+        Navigation.findNavController(view).navigate(R.id.action_releaseEditionFragment_to_subscribeFragment)
     }
 }

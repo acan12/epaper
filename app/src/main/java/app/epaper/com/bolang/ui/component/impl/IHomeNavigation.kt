@@ -23,7 +23,11 @@ interface IHomeNavigation : IBaseNavigation {
 
     fun navigateProfileToHome(view: View)
 
-    fun navigateHomeToListEdition(view: View)
+    fun navigateHomeToReleaseEdition(view: View)
 
-    fun navigateBackListEdition(view: View)
+    fun navigateBackReleaseEdition(view: View)
+
+    fun navigateReleaseEditionToPdfPreview(item: Content, view: View)
+
+    fun navigateReleaseEditionToSubscribe(view: View)
 }

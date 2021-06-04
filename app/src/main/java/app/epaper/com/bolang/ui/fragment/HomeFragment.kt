@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import app.beelabs.com.codebase.base.BaseDialog
 import app.beelabs.com.codebase.base.BaseFragment
 import app.beelabs.com.codebase.base.response.BaseResponse
 import app.epaper.com.bolang.App
@@ -20,13 +21,14 @@ import app.epaper.com.bolang.presenter.manager.SessionManager
 import app.epaper.com.bolang.ui.adapter.EpaperCardAdapter
 import app.epaper.com.bolang.ui.dialog.SubscribeOfferDialog
 import app.epaper.com.bolang.ui.dialog.SubscribeProcessingDialog
+import app.epaper.com.bolang.ui.impl.IDialogSubscribeView
 import app.epaper.com.bolang.ui.impl.IHomeView
 import app.epaper.com.bolang.ui.tool.UiUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : BaseFragment(), IHomeView {
+class HomeFragment : BaseFragment(), IHomeView, IDialogSubscribeView {
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
@@ -46,7 +48,7 @@ class HomeFragment : BaseFragment(), IHomeView {
     private fun setupUI() = with(binding) {
         showHeaderInfo()
         btnShowAll.setOnClickListener {
-            App.getNavigationComponent().homeNavigation().navigateHomeToListEdition(it)
+            App.getNavigationComponent().homeNavigation().navigateHomeToReleaseEdition(it)
         }
         avatarPersona.setOnClickListener {
             App.getNavigationComponent().homeNavigation().navigateToProfile(root, currentActivity)
@@ -57,14 +59,11 @@ class HomeFragment : BaseFragment(), IHomeView {
         rvEditionView.layoutManager = layout
 
         ResourcePresenter(this@HomeFragment).onListContent()
-        swipeContainer.setOnRefreshListener {
-            ResourcePresenter(this@HomeFragment).onListContent()
-        }
     }
 
     private fun showHeaderInfo() = with(binding) {
         if (SessionManager.isLogin(root.context))
-            avatarPersona.text = SessionManager.getPersonaFirstName(root.context)
+            avatarPersona.text = SessionManager.getPersonaUserName(root.context)[0].toUpperCase().toString()
         else {
             avatarPersona.visibility = View.INVISIBLE
             imageSubscribeIndicator.visibility = View.INVISIBLE
@@ -84,9 +83,9 @@ class HomeFragment : BaseFragment(), IHomeView {
                 .navigateToLogin(view.context)
         } else if (!SessionManager.isSubscribe(view.context)) {
             if (SessionManager.getSubscribeStatus(view.context) == STATUS_PENDING)
-                SubscribeProcessingDialog(binding.root, R.style.CoconutDialogFullScreen).show()
+                SubscribeProcessingDialog(this, R.style.CoconutDialogFullScreen).show()
             else
-                SubscribeOfferDialog(view, R.style.CoconutDialogFullScreen).show()
+                SubscribeOfferDialog(this, R.style.CoconutDialogFullScreen).show()
         } else {
             App.getNavigationComponent()
                 .homeNavigation()
@@ -104,7 +103,6 @@ class HomeFragment : BaseFragment(), IHomeView {
             if (resp.contents.isNotEmpty()) {
 
                 var contents = resp.contents.reversed()
-                swipeContainer.isRefreshing = false;
                 Glide.with(requireActivity())
                     .load(API_BASE_URL + contents[0].cover_image_url)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -130,4 +128,13 @@ class HomeFragment : BaseFragment(), IHomeView {
         }
     }
 
+    override fun handleButtonNextClicked(dialog: BaseDialog) {
+        dialog.dismiss()
+    }
+
+    override fun handleButtonJoinClicked(dialog: BaseDialog) {
+        App.getNavigationComponent()
+            .homeNavigation()
+            .navigateToSubscribe(binding.root, currentActivity)
+    }
 }

@@ -11,8 +11,7 @@ class LoginResponse : BaseResponse() {
     lateinit var responseStatus: String
     lateinit var token: String
 
-    @JsonProperty("user")
-    lateinit var data: User
+    lateinit var user: User
 
 
 }

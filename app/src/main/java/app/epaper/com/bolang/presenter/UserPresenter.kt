@@ -18,8 +18,8 @@ class UserPresenter(var iview: IView) : BasePresenter() {
 
     private val repository: UserRepository = UserRepository()
 
-    fun onProfile() {
-        repository.onCallApiProfile(iview.currentActivity)
+    fun onProfile(id: String) {
+        repository.onCallApiProfile(id, iview.currentActivity)
             ?.subscribe(
                 object : RxObserver<ProfileResponse>(
                     iview,

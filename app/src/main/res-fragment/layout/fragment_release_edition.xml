@@ -45,7 +45,7 @@
                 android:tag="asc"
                 android:paddingHorizontal="10dp"
                 android:text="@string/latest"
-                android:textColor="@color/color_blue_073f65" />
+                android:textColor="@color/color_blue_0074bf" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:indeterminateTint="@color/color_blue_0174BF" />
+            android:indeterminateTint="@color/color_blue_0074bf" />
 
     <TextView
             android:id="@+id/item_progressbar_message"

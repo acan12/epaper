@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="Subscribe Form"
-                    android:textColor="@color/color_blue_073f65"
+                    android:textColor="@color/color_blue_0074bf"
                     android:textSize="16sp" />
         </RelativeLayout>
 

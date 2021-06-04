@@ -37,7 +37,7 @@ class ProfileFragment : BaseFragment(), IProfileView {
             )
         )
 
-        UserPresenter(this@ProfileFragment).onProfile()
+        UserPresenter(this@ProfileFragment).onProfile(SessionManager.getPersonaId(currentActivity))
         btnBack.setOnClickListener {
             App.getNavigationComponent().homeNavigation().navigateProfileToHome(root)
         }
@@ -52,8 +52,10 @@ class ProfileFragment : BaseFragment(), IProfileView {
         if (resp.data != null) {
             with(binding) {
                 var profile = resp.data
+                avatarPersona.text = profile.name[0].toString().toUpperCase()
+                itemUsername.text = profile.name
                 itemPhone.text = profile.phone
-                itemAddress.text = profile.email
+                itemAddress.text = profile.address
                 itemEmail.text = profile.email
                 if (!profile.has_subscribe)
                     itemStatusSubscribe.setTextColor(resources.getColor(R.color.color_grey_999999))

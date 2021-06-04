@@ -23,7 +23,7 @@
             android:layout_marginTop="100dp"
             android:background="@drawable/shap_rounded_purple"
             android:gravity="center"
-            android:text="A"
+            android:text="-"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/color_white"
@@ -32,11 +32,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+            android:id="@+id/item_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="110dp"
-            android:text="Ary Suryawan"
+            android:text="-"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@+id/avatar_persona"
@@ -52,7 +53,7 @@
             android:background="@drawable/rounded_border_blue"
             android:gravity="center_vertical|left"
             android:paddingHorizontal="20dp"
-            android:text="Jl Tanah Kusir, Jakarta Selatan"
+            android:text="-"
             android:textColor="@color/color_black_010F07"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/avatar_persona" />
@@ -66,7 +67,7 @@
             android:background="@drawable/rounded_border_blue"
             android:gravity="center_vertical|left"
             android:paddingHorizontal="20dp"
-            android:text="0856 - 973-66189"
+            android:text="-"
             android:textColor="@color/color_black_010F07"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_address" />
@@ -80,7 +81,7 @@
             android:background="@drawable/rounded_border_blue"
             android:gravity="center_vertical|left"
             android:paddingLeft="20dp"
-            android:text="ary@mail.com"
+            android:text="-"
             android:textColor="@color/color_black_010F07"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_phone" />

@@ -30,7 +30,7 @@
                 android:layout_marginTop="23dp"
                 android:text="@string/thank_you"
                 android:textAppearance="@style/FontBold"
-                android:textColor="@color/color_blue_073f65"
+                android:textColor="@color/color_blue_0074bf"
                 android:textSize="20sp" />
 
         <TextView
