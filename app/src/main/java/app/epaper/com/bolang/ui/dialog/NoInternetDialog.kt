@@ -19,7 +19,6 @@ class NoInternetDialog(context: Context, style: Int) : BaseDialog(context, style
     private fun initUI() {
         btn_retry.setOnClickListener {
             dismiss()
-            // recall api give stamp
         }
 
     }
