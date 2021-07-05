@@ -148,62 +148,66 @@
                     android:textColor="@color/color_white"
                     app:layout_constraintTop_toBottomOf="@+id/main_layout" />
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="13dp"
-                    android:text="@string/previous_edition"
-                    android:textColor="@color/color_black_010F07"
-                    android:textSize="18sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btn_detail" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_show_all"
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="24dp"
-                    android:background="@drawable/rounded_solid_grey"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="@string/show_all"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@color/color_white"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_detail" />
-
-            <View
-                    android:id="@+id/line"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginHorizontal="24dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/color_grey_999999"
-                    app:layout_constraintTop_toBottomOf="@id/btn_show_all" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_edition_view"
+            <RelativeLayout
+                    android:id="@+id/slide_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/line" />
+                    app:layout_constraintTop_toBottomOf="@id/btn_detail">
 
-            <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
-                    android:id="@+id/slide_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:spi_dotColor="@color/color_grey_e6e6e6"
-                    app:spi_dotSelectedColor="@color/color_blue_0074bf" />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="13dp"
+                        android:text="@string/previous_edition"
+                        android:textColor="@color/color_black_010F07"
+                        android:textSize="18sp" />
 
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_show_all"
+                        android:layout_width="120dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="24dp"
+                        android:background="@drawable/rounded_solid_grey"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="@string/show_all"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/color_white"
+                        android:layout_alignParentRight="true" />
+
+                <View
+                        android:id="@+id/line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/color_grey_999999"
+                        android:layout_below="@id/btn_show_all" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_edition_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/line" />
+
+                <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+                        android:id="@+id/slide_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:spi_dotColor="@color/color_grey_e6e6e6"
+                        app:spi_dotSelectedColor="@color/color_blue_0074bf" />
+
+            </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

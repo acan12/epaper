@@ -118,12 +118,17 @@ class HomeFragment : BaseFragment(), IHomeView, IDialogSubscribeView {
                 btnDetail.setOnClickListener { showDetailEpaper(contents[0], root) }
                 mainContentImage.setOnClickListener { showDetailEpaper(contents[0], root) }
 
-                rvEditionView.adapter = EpaperCardAdapter(contents, this@HomeFragment)
-                slideIndicator.attachToRecyclerView(rvEditionView)
+                if(contents.size > 1) {
+                    rvEditionView.adapter = EpaperCardAdapter(contents, this@HomeFragment)
+                    slideIndicator.attachToRecyclerView(rvEditionView)
+                } else {
+                    slideLayout.visibility = View.GONE
+                }
 
             } else {
                 itemProgressbar.visibility = View.INVISIBLE
                 itemProgressbarMessage.text = resources.getString(R.string.data_not_found)
+                slideLayout.visibility = View.GONE
             }
         }
     }
